@@ -1,0 +1,11 @@
+.logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 25px;
+    margin: 10px
+};
+
+.nav-item {
+    padding: 2px;
+    margin-left: 7px;
+}
