@@ -1,0 +1,13 @@
+<div class ="wall-post-card"  >
+    <h2>{{ title | titlecase}}</h2>
+    <a routerLink="/facesnaps">Back</a>
+    <p>Publié {{ createdDate | date:'le d MMMM YYYY à HH:mm' }}</p>
+    <img [src] = "imageUrl" [alt]="title">
+    <p>{{description }}</p>
+    <p *ngIf="location">Lieu : {{location}}</p>
+    <!-- <p>
+        <button (click)="onSnap(faceSnap.id)"> {{ buttonText }} </button>
+        🌶️ nombre de snaps : <span [ngStyle]="{ color: 'rgb(0,' + faceSnap.snaps*200 + ',0)' }">{{ faceSnap.snaps }}</span> 
+    </p> -->
+</div>
+

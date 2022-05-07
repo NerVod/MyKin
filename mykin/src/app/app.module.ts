@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { WallPostComponent } from './wall-post/wall-post.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HeaderComponent,
     FooterComponent,
     LogInComponent,
+    WallPostComponent,
     
   ],
   imports: [
