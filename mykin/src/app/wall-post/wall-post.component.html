@@ -1,13 +1,13 @@
 <div class ="wall-post-card"  >
-    <h2>{{ title | titlecase}}</h2>
-    <a routerLink="/facesnaps">Back</a>
-    <p>Publié {{ createdDate | date:'le d MMMM YYYY à HH:mm' }}</p>
-    <img [src] = "imageUrl" [alt]="title">
-    <p>{{description }}</p>
-    <p *ngIf="location">Lieu : {{location}}</p>
+    <h2>{{ wallPost.title| titlecase}}</h2>
+    <a routerLink="/wallpost">Back</a>
+    <p>Publié {{ wallPost.createdDate | date:'le d MMMM YYYY à HH:mm' }}</p>
+    <img [src] = "wallPost.imageUrl" [alt]="wallPost.title">
+    <p>{{wallPost.description }}</p>
+    <p *ngIf="location">Lieu : {{wallPost.location}}</p>
     <p>
         <button (click)="onLike()">I like that !</button>
-        🌶️ {{ likes }}
+        🌶️ {{ wallPost.likes }}
     </p>
 
 </div>

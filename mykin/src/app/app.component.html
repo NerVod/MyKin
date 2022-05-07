@@ -1,5 +1,7 @@
 <app-header></app-header>
 <app-log-in></app-log-in>
 <router-outlet></router-outlet>
-<app-wall-post></app-wall-post>
+<app-wall-post [wallPost]="myPost"></app-wall-post>
+<app-wall-post [wallPost]="myOtherPost"></app-wall-post>
+<app-wall-post [wallPost]="myLastPost"></app-wall-post>
 <app-footer></app-footer>
