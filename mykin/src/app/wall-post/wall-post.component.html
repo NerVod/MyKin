@@ -4,7 +4,7 @@
     <p>Publié {{ wallPost.createdDate | date:'le d MMMM YYYY à HH:mm' }}</p>
     <img [src] = "wallPost.imageUrl" [alt]="wallPost.title">
     <p>{{wallPost.description }}</p>
-    <p *ngIf="location">Lieu : {{wallPost.location}}</p>
+    <p *ngIf="wallPost.location">Lieu : {{wallPost.location}}</p>
     <p>
         <button (click)="onLike()">I like that !</button>
         🌶️ {{ wallPost.likes }}

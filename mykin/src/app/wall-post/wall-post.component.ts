@@ -10,14 +10,6 @@ export class WallPostComponent implements OnInit {
 
   @Input() wallPost!: WallPost;
 
-
-  title!: string;
-  description!: string;
-  createdDate!: Date;
-  likes!: number;
-  imageUrl!: string;
-  location!:string;
-
   buttonText!: string;
   likeState!: number;
 
