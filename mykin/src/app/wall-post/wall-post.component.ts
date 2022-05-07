@@ -12,7 +12,10 @@ export class WallPostComponent implements OnInit {
   createdDate!: Date;
   likes!: number;
   imageUrl!: string;
-  location!:string
+  location!:string;
+
+  buttonText!: string;
+  likeState!: number
 
   constructor() { }
 
@@ -24,6 +27,20 @@ export class WallPostComponent implements OnInit {
     this.likes= 0,
     this.imageUrl= "https://www.capitainestudy.fr/wp-content/uploads/2019/10/tahiti-coline.jpg",
     this.location= 'Tahiti'
+    this.likeState= 1
+  }
+
+  onLike(){
+    if( this.likeState === 1 ){
+          this.buttonText= "Oups, Je ne suis pas fan ...";
+          this.likes++;
+          this.likeState = 2;
+
+    } else {
+          this.buttonText = "I Snap That !";
+          this.likeState = 1;
+          this.likes--
+    };
   }
 
 }

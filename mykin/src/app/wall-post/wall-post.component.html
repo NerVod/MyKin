@@ -5,9 +5,10 @@
     <img [src] = "imageUrl" [alt]="title">
     <p>{{description }}</p>
     <p *ngIf="location">Lieu : {{location}}</p>
-    <!-- <p>
-        <button (click)="onSnap(faceSnap.id)"> {{ buttonText }} </button>
-        🌶️ nombre de snaps : <span [ngStyle]="{ color: 'rgb(0,' + faceSnap.snaps*200 + ',0)' }">{{ faceSnap.snaps }}</span> 
-    </p> -->
+    <p>
+        <button (click)="onLike()">I like that !</button>
+        🌶️ {{ likes }}
+    </p>
+
 </div>
 
