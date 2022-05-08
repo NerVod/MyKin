@@ -6,8 +6,8 @@
     <p>{{wallPost.description }}</p>
     <p *ngIf="wallPost.location">Lieu : {{wallPost.location}}</p>
     <p>
-        <button (click)="onLike()">I like that !</button>
-        🌶️ {{ wallPost.likes }}
+        <button (click)="onLike()">{{ buttonText}}</button>
+        <span [ngStyle]="{color: 'rgb(0,150,' + wallPost.likes*300 + ')' }">🌶️ {{ wallPost.likes }}</span>
     </p>
 
 </div>
