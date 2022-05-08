@@ -16,8 +16,8 @@ export class WallPostComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.buttonText= 'I Like That'
-    this.likeState= 1
+    this.buttonText= 'I Like That';
+    this.likeState= 1;
   }
 
   onLike(){

@@ -14,4 +14,15 @@ h2 {
     margin-left: 26px;
 }
 
-
+.liked {
+    background-color: rgba(234, 252, 253, 05);
+    color: rgb(12, 69, 69);
+    button {
+        background-color:lightsteelblue;
+        box-shadow: 4px 4px 20px rgb(224, 252, 253);
+        color:rgb(20, 54, 109);
+        &:active {
+            box-shadow: 0 0 5px rgb(224, 252, 253);
+        }
+    }
+}
