@@ -31,4 +31,11 @@ export class WallPostsService {
           imageUrl :"https://gateaux-et-delices.com/wp-content/uploads/2015/04/G%C3%A2teau-aux-fraises-pour-accueillir-le-beau-temps1.jpg",
           }  
       ];
-}
+
+      
+      
+      getAllWallPosts(): WallPost[]{
+          return this.wallPosts
+      }
+      
+    }
