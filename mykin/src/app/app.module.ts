@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { WallPostComponent } from './wall-post/wall-post.component';
+import { WallPostListComponent } from './wall-post-list/wall-post-list.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { WallPostComponent } from './wall-post/wall-post.component';
     FooterComponent,
     LogInComponent,
     WallPostComponent,
+    WallPostListComponent,
     
   ],
   imports: [
