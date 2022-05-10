@@ -1,0 +1,24 @@
+.message-prive-card {
+    background-color: var(--backgroundCard);
+    box-shadow: 4px 4px 20px var(--cardShadow) ;
+    margin: 20px auto;
+    padding: 16px 12px;
+    width: 55%;
+}
+
+.messageArea {
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin: 10px;
+}
+
+h2 {
+    margin-bottom: 12px;
+    font-size: 1.5em;
+}
+
+.bodyMessage {
+    border-top: 1px solid lightgray;
+    margin-top: 8px;
+    padding: 10px 5px 5px 5px;
+}
