@@ -13,6 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { WallPostComponent } from './wall-post/wall-post.component';
 import { WallPostListComponent } from './wall-post-list/wall-post-list.component';
 import { MessagePriveComponent } from './message-prive/message-prive.component';
+import { MessagePriveListComponent } from './message-prive-list/message-prive-list.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MessagePriveComponent } from './message-prive/message-prive.component';
     WallPostComponent,
     WallPostListComponent,
     MessagePriveComponent,
+    MessagePriveListComponent,
     
   ],
   imports: [

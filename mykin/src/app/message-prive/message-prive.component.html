@@ -1,7 +1,9 @@
 <div class="message-prive-card">
-    <p class="infoMessage">Envoyé par : {{ user }} {{createdDate | date: 'le d MMMM YYYY à HH:mm'}}</p>
+    <p class="infoMessage">Envoyé par : {{ messagePrive.user }} {{messagePrive.createdDate | date: 'le d MMMM YYYY à HH:mm'}}</p>
     <div class="messageArea">
-        <h2>{{ title }}</h2>
-        <p class="bodyMessage">{{ message }}</p>
+        <div class="bodyTitre">
+            <h2 >{{ messagePrive.title }}</h2>
+        </div>
+        <p class="bodyMessage">{{ messagePrive.message }}</p>
     </div>
 </div>
