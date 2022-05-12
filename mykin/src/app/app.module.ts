@@ -14,6 +14,7 @@ import { WallPostComponent } from './wall-post/wall-post.component';
 import { WallPostListComponent } from './wall-post-list/wall-post-list.component';
 import { MessagePriveComponent } from './message-prive/message-prive.component';
 import { MessagePriveListComponent } from './message-prive-list/message-prive-list.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { MessagePriveListComponent } from './message-prive-list/message-prive-li
     WallPostListComponent,
     MessagePriveComponent,
     MessagePriveListComponent,
+    RegisterComponent,
     
   ],
   imports: [
