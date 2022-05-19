@@ -1,29 +1,30 @@
-const Mongoose = require('mongoose');
-require('dotenv').config();
+const Mongoose = require("mongoose");
+require("dotenv").config();
 const url = process.env.DB;
 
+Mongoose.connect(url, { useNewUrlParser: true });
 
-Mongoose.connect(url, { useNewUrlParser: true});
-
-const UserSchema = new Mongoose.Schema({
-    username: {
-        type: String,
-        unique: true,
-        required: true,
-        lowercase: true,  
+const UserSchema = new Mongoose.Schema(
+  {
+    userName: {
+      type: String,
+      unique: true,
+      required: true,
+      lowercase: true,
     },
     email: {
-        type: String,
-        unique: true,
-        required: true,
-        lowercase: true,
-        trim: true
+      type: String,
+      unique: true,
+      required: true,
+      lowercase: true,
+      trim: true,
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
+  },
+  { collection: "users" }
+);
 
-}, { collection: 'users'})
-
-exports.User = Mongoose.model('User', UserSchema)
+exports.User = Mongoose.model("User", UserSchema);

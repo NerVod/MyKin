@@ -21,8 +21,8 @@
         <form [formGroup]="registerForm" (ngSubmit)="registerFormSubmit" class="row g-3">
 
             <div class="col-md-12">
-                <label for="id_firstName" class="form-label">Nom d'utilisateur</label>
-                <input formControlName="userName" type="text" class="form-control" id="id_firstName" required>
+                <label for="id_userName" class="form-label">Nom d'utilisateur</label>
+                <input formControlName="userName" type="text" class="form-control" id="id_userName" required>
                     <div *ngIf="userName.touched && userName.errors?.required" class="d-block invalid-feedback">Veuillez saisir un nom d'utilisateur.</div>
             </div>
 
@@ -52,7 +52,7 @@
             </div>
 
                 <div class="col-md-6 mt-4">
-                    <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary px-5">Valider</button>
+                    <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary px-5"(click)="registerFormSubmit(registerForm)">Valider</button>
                 <button type="button" class="btn btn-secondary px-3 ms-2">Annuler</button>
                 </div>
             </form>

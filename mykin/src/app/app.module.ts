@@ -15,6 +15,7 @@ import { WallPostListComponent } from './wall-post-list/wall-post-list.component
 import { MessagePriveComponent } from './message-prive/message-prive.component';
 import { MessagePriveListComponent } from './message-prive-list/message-prive-list.component';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule, 
+    FlexLayoutModule,
+    HttpClientModule 
   ],
   providers: [
     { provide: LOCALE_ID, useValue:'fr-FR'}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
     password1:['',[ Validators.required, Validators.minLength(8)]]
   })
 
-  constructor( private fb: FormBuilder) { }
+  constructor( private fb: FormBuilder, private http :HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -33,13 +34,16 @@ export class RegisterComponent implements OnInit {
   }
 
   registerFormSubmit(form: FormGroup): void {
-    let formData = this.registerForm.value
+    let formData: any = this.registerForm.value
     delete formData.password1;
     console.log(formData);
     
     /////////////////////////////////////////
     // traitement envoi serveur
-
+this.http.post('http://localhost:3000/register', formData).subscribe(
+  (res) => console.log(res),
+  (err) => console.log(err)
+)
     //////////////////////////////////////////
   }
 
