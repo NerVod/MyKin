@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
+import { CrudService } from '../service/crud.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,11 @@ export class RegisterComponent implements OnInit {
     password1:['',[ Validators.required, Validators.minLength(8)]]
   })
 
-  constructor( private fb: FormBuilder, private http :HttpClient) { }
+  constructor( private fb: FormBuilder,
+    private router : Router,
+    private ngZone: NgZone,
+    private crudService: CrudService,  
+    private http :HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -40,10 +46,19 @@ export class RegisterComponent implements OnInit {
     
     /////////////////////////////////////////
     // traitement envoi serveur
-this.http.post('http://localhost:3000/register', formData).subscribe(
-  (res) => console.log(res),
-  (err) => console.log(err)
-)
+// this.http.post('http://localhost:3000/register', formData).subscribe(
+//   (res) => console.log(res),
+//   (err) => console.log(err)
+// )
+
+this.crudService.addUser(this.registerForm.value)
+.subscribe(() => {
+  console.log('User ajouté avec succès')
+  this.ngZone.run(() => this.router.navigateByUrl('/login'))
+}, (err) => {
+  console.log(err)
+})
+
     //////////////////////////////////////////
   }
 
