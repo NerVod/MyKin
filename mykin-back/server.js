@@ -22,7 +22,7 @@ mongoose
       console.log("connecté à la base de données");
     },
     (error) => {
-      console.log("errur de connexion à la BDD :", error);
+      console.log("erreur de connexion à la BDD :", error);
     }
   );
 
@@ -39,7 +39,8 @@ const port = process.env.PORT || 3000;
 
 // 404 handler
 app.use((req, res, next) => {
-  next(createError(404));
+  // next(createError(404));
+  res.send("error 404");
 });
 
 //Base route
@@ -58,9 +59,9 @@ app.get("*", (req, res) => {
 
 // error handler
 app.use(function (err, req, res, next) {
-  console.error(err.message);
+  console.error(err);
   if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).send(err.message);
+  res.status(err.statusCode).send(err);
 });
 
 app.use("/img", express.static(path.join(__dirname, "public/images")));
