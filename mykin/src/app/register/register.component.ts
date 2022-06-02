@@ -42,6 +42,14 @@ export class RegisterComponent implements OnInit {
   registerFormSubmit(form: FormGroup): void {
     let formData: any = this.registerForm.value
     delete formData.password1;
+    this.crudService.addUser(formData)
+    .subscribe(() => {
+      console.log('User ajouté avec succès')
+      this.ngZone.run(() => this.router.navigateByUrl('/login'))
+    }, (err) => {
+      console.log(err)
+    })
+
     console.log(formData);
     
     /////////////////////////////////////////
@@ -51,13 +59,13 @@ export class RegisterComponent implements OnInit {
 //   (err) => console.log(err)
 // )
 
-this.crudService.addUser(this.registerForm.value)
-.subscribe(() => {
-  console.log('User ajouté avec succès')
-  this.ngZone.run(() => this.router.navigateByUrl('/login'))
-}, (err) => {
-  console.log(err)
-})
+// this.crudService.addUser(this.registerForm.value)
+// .subscribe(() => {
+//   console.log('User ajouté avec succès')
+//   this.ngZone.run(() => this.router.navigateByUrl('/login'))
+// }, (err) => {
+//   console.log(err)
+// })
 
     //////////////////////////////////////////
   }
