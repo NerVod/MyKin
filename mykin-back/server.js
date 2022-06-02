@@ -1,30 +1,32 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
 const Database = require("./database/db");
-const mongoose = require("mongoose");
+const Mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
 const jwt = require("jsonwebtoken");
 const userRoute = require("./routes/user.routes");
+const url = process.env.DB;
 require("dotenv").config();
 
-mongoose.Promise = global.Promise;
-mongoose
-  .connect(Database.db, {
+
+Mongoose.connect(
+  "mongodb+srv://NerVod:MotDePasseMongo@cluster0.aykvr.mongodb.net/mykin?retryWrites=true&w=majority",
+  {
     useNewUrlParser: true,
-    // useFindAndModify: false,
     useUnifiedTopology: true,
-  })
-  .then(
-    () => {
-      console.log("connecté à la base de données");
-    },
-    (error) => {
-      console.log("erreur de connexion à la BDD :", error);
-    }
-  );
+  }
+).then(
+  () => {
+    console.log("connecté à la base de données");
+  },
+  (error) => {
+    console.log("erreur de connexion à la BDD ...:", error);
+  }
+);
 
 const app = express();
 

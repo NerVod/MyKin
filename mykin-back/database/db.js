@@ -1,16 +1,20 @@
+const Mongoose = require("mongoose");
+const Schema = Mongoose.Schema;
+require("dotenv").config();
+const url = process.env.DB;
+
 module.exports = {
-  db: 'mongodb://localhost:3000/db'
-}
-
-
+  db: url,
+};
 
 // const Mongoose = require("mongoose");
+// const Schema = Mongoose.Schema;
 // require("dotenv").config();
 // const url = process.env.DB;
 
 // Mongoose.connect(url, { useNewUrlParser: true });
 
-// const UserSchema = new Mongoose.Schema(
+// let User = new Schema(
 //   {
 //     userName: {
 //       type: String,
@@ -33,4 +37,4 @@ module.exports = {
 //   { collection: "users" }
 // );
 
-// exports.User = Mongoose.model("User", UserSchema);
+// exports.User = Mongoose.model("User", User);
