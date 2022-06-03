@@ -75,45 +75,45 @@ app.use(express.urlencoded({ extended: true }));
 // });
 
 ///////////////////// Création compte utilistateur/////////////////////
-// app.post("/register", (req, res) => {
-//   console.log("req : ", req);
-//   if (!req.body.email || !req.body.password) {
-//     res.json({
-//       "Erreur création de compte": "vérifier email ou de mot de passe",
-//     });
-//     return;
-//   }
+app.post("/register", (req, res) => {
+  console.log("req : ", req);
+  // if (!req.body.email || !req.body.password) {
+  //   res.json({
+  //     "Erreur création de compte": "vérifier email ou de mot de passe",
+  //   });
+  //   return;
+  // }
 
-//   Database.User.findOne({ email: req.body.email }).then((user) => {
-//     if (user) {
-//       res.json({ "Compte existant": "Cet email est associé à un compte" });
-//     } else {
-//       Database.User.create({
-//         username: req.body.username,
-//         email: req.body.email,
-//         password: bcrypt.hashSync(req.body.password, salt),
-//       })
-//         // .then((user) => {
-//         //   console.log("compte créé en base de données");
+  // Database.User.findOne({ email: req.body.email }).then((user) => {
+  //   if (user) {
+  //     res.json({ "Compte existant": "Cet email est associé à un compte" });
+  //   } else {
+  //     Database.User.create({
+  //       username: req.body.username,
+  //       email: req.body.email,
+  //       password: bcrypt.hashSync(req.body.password, salt),
+  //     })
+  //       // .then((user) => {
+  //       //   console.log("compte créé en base de données");
 
-//         //   const token = jwt.sign(
-//         //     { id: user._id, email: user.email, username: user.username },
-//         //     process.env.JWTPRIVATEKEY
-//         //   );
-//         //   console.log("token créé à la création du compte :", token);
-//         //   res.setHeader("Authorization", "Bearer " + token);
-//         //   res.json({
-//         //     "compte créé": "Compte créé avec succès en base de données",
-//         //   });
-//         // })
-//         .catch((err) => {
-//           console.error(err);
-//           console.log(err);
-//           res.json({ "Erreur création": "compte non activé" });
-//         });
-//     }
-//   });
-// });
+  //       //   const token = jwt.sign(
+  //       //     { id: user._id, email: user.email, username: user.username },
+  //       //     process.env.JWTPRIVATEKEY
+  //       //   );
+  //       //   console.log("token créé à la création du compte :", token);
+  //       //   res.setHeader("Authorization", "Bearer " + token);
+  //       //   res.json({
+  //       //     "compte créé": "Compte créé avec succès en base de données",
+  //       //   });
+  //       // })
+  //       .catch((err) => {
+  //         console.error(err);
+  //         console.log(err);
+  //         res.json({ "Erreur création": "compte non activé" });
+  //       });
+  //   }
+  // });
+});
 
 const httpServer = app.listen(port, () => {
   console.log(`serveur backend écoute sur le port ${port}`);

@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
   registerFormSubmit(form: FormGroup): void {
     let formData: any = this.registerForm.value
     delete formData.password1;
+    console.log('formdata methode registerformsubmit',formData);
     this.crudService.addUser(formData)
     .subscribe(() => {
       console.log('User ajouté avec succès')

@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 export class CrudService {
 
   // API Express js
-  REST_API: string = "http://localhost:3000/register";
+  REST_API: string = "http://localhost:3000/api";
 
   // http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application.json');

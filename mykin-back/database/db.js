@@ -4,7 +4,7 @@ require("dotenv").config();
 const url = process.env.DB;
 
 module.exports = {
-  db: url,
+  db: 'mongodb://localhost:27017/db',
 };
 
 // const Mongoose = require("mongoose");
