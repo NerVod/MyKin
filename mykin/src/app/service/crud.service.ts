@@ -13,14 +13,14 @@ export class CrudService {
   REST_API: string = "http://localhost:3000/api";
 
   // http Header
-  httpHeaders = new HttpHeaders().set('Content-Type', 'application.json');
+  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor( private httpClient: HttpClient) { }
   
   // Add
-  addUser(data :User): Observable<any> {
+  AddUser(data :User): Observable<any> {
     let API_URL = `${this.REST_API}/add-user`;
-    console.log(`${this.REST_API}/add-user`)
+    console.log('adresse register dans crudService',`${this.REST_API}/register`)
     return this.httpClient.post(API_URL, data)
     .pipe(
       catchError(this.handleError)
@@ -40,10 +40,11 @@ export class CrudService {
       errorMessage = error.error.message;
     } else {
       // Handle server error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage du handleError: ${error.message}`;
     }
-    console.log(errorMessage);
-    return throwError(errorMessage);
+    console.log('message handle error crudservice :',errorMessage);
+    return throwError(() => new Error (errorMessage));
+    // return throwError(errorMessage);
   }
 
 

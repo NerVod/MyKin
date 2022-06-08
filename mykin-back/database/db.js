@@ -1,10 +1,9 @@
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
-require("dotenv").config();
-const url = process.env.DB;
+
 
 module.exports = {
-  db: 'mongodb://localhost:27017/db',
+  db: 'mongodb+srv://NerVod:MotDePasseMongo@cluster0.aykvr.mongodb.net/mykin?retryWrites=true&w=majority',
 };
 
 // const Mongoose = require("mongoose");
