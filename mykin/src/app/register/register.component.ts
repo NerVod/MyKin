@@ -49,9 +49,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerFormSubmit(form: FormGroup): void {
-    console.log('formvalue AVANT chiffrage password',this.registerForm.value)
     let formData: any = this.registerForm.value;
-    // formData.password = 'chiffrer le password ici';
     const salt = bcrypt.genSaltSync(10)
     formData.password = bcrypt.hashSync(formData.password, salt);
     console.log('formvalue APRES chiffrage password',this.registerForm.value)
