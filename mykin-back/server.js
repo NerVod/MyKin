@@ -14,7 +14,6 @@ require("dotenv").config();
 // connexion à la BDD
 Mongoose.Promise = global.Promise;
 Mongoose.connect(
-  // "mongodb+srv://NerVod:MotDePasseMongo@cluster0.aykvr.mongodb.net/mykin?retryWrites=true&w=majority",
   Database.db,
   {
     useNewUrlParser: true,

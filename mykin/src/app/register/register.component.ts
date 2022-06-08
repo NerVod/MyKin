@@ -43,9 +43,9 @@ export class RegisterComponent implements OnInit {
   get password(): any {
     return this.registerForm.get('password');
   }
-  // get password1(): any {
-  //   return this.registerForm.get('password1');
-  // }
+  get password1(): any {
+    return this.registerForm.get('password1');
+  }
 
   registerFormSubmit(form: FormGroup): void {
     console.log(this.registerForm.value)
