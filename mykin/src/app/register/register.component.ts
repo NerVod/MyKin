@@ -3,6 +3,7 @@ import { CrudService } from '../service/crud.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-add-user',
@@ -48,18 +49,17 @@ export class RegisterComponent implements OnInit {
   }
 
   registerFormSubmit(form: FormGroup): void {
-    console.log(this.registerForm.value)
-    // let formData: any = this.registerForm.value
-    // console.log('formdata methode registerformsubmit avant delete pass1',formData);
-    // delete formData.password1;
-    // console.log('formdata methode registerformsubmit apres delete pass1',formData);
+    console.log('formvalue AVANT chiffrage password',this.registerForm.value)
+    let formData: any = this.registerForm.value;
+    // formData.password = 'chiffrer le password ici';
+    const salt = bcrypt.genSaltSync(10)
+    formData.password = bcrypt.hashSync(formData.password, salt);
+    console.log('formvalue APRES chiffrage password',this.registerForm.value)
+
+
+
+   
     this.crudService.AddUser(this.registerForm.value)
-    // .subscribe(() => {
-    //   console.log('User ajouté avec succès')
-    //   this.ngZone.run(() => this.router.navigateByUrl('/login'))
-    // }, (err) => {
-    //   console.log(err)
-    // })
     .subscribe({
       next: (v) => console.log('User ajouté avec succès :', v),
       error: (e) => console.error('error crudservice adduser :',e),
