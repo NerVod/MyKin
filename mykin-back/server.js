@@ -1,87 +1,78 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const Database = require("./database/db");
-const Mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
-const salt = bcrypt.genSaltSync(saltRounds);
-const jwt = require("jsonwebtoken");
-const userRoute = require("./routes/user.routes");
-const url = process.env.DB;
-require("dotenv").config();
-
-// connexion à la BDD
-Mongoose.Promise = global.Promise;
-Mongoose.connect(
-  Database.db,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-).then(
-  () => {
-    console.log("connecté à la base de données backend");
-  },
-  (error) => {
-    console.log("erreur de connexion à la BDD ...:", error);
-  }
-);
+const PORT = process.env.PORT || 3000;
+const userRoutes = require("./routes/user.routes");
 
 const app = express();
+
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+
+app.use("/user", userRoutes)
+
+// insertion config database
+require("./database/db")(app)
+
+app.get("/", (req, res) => {
+  console.log("bien sur les routes backend !")
+})
+
+app.listen(PORT, () => {
+  console.log(`serveur écoute sur le port ${PORT}`)
+})
 
 // static files path
-app.use(express.static(path.join(__dirname, "mykin/src/assets")));
+// app.use(express.static(path.join(__dirname, "mykin/src/assets")));
 
-// api root
-app.use("/api", userRoute);
+// // api root
+// app.use("/api", userRoute);
 
-// PORT
-const port = process.env.PORT || 3000;
+// // PORT
+// const port = process.env.PORT || 3000;
 
-// 404 handler
-app.use((req, res, next) => {
-  // next(createError(404));
-  res.send("error 404 route n'existe pas");
-});
+// // 404 handler
+// app.use((req, res, next) => {
+//   // next(createError(404));
+//   res.send("error 404 route n'existe pas");
+// });
 
-//Base route
-app.get("/", (req, res) => {
-  res.json({ messagejson: "route principale délivrée par le backend" });
-});
-
-// Base Route
-app.get("/", (req, res) => {
-  res.send("invalid endpoint");
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "mykin/src/app/app.component.html"));
-});
-
-// error handler
-app.use(function (err, req, res, next) {
-  console.error(err.message);
-  if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).send(err.message);
-});
-
-app.use("/img", express.static(path.join(__dirname, "public/images")));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+// //Base route
 // app.get("/", (req, res) => {
 //   res.json({ messagejson: "route principale délivrée par le backend" });
 // });
 
-///////////////////// Création compte utilistateur/////////////////////
-app.post("/register", (req, res) => {
-  console.log("req : ", req);
-});
+// // Base Route
+// app.get("/", (req, res) => {
+//   res.send("invalid endpoint");
+// });
 
-const httpServer = app.listen(port, () => {
-  console.log(`Le serveur backend écoute sur le port ${port}`);
-});
+// app.get("*", (req, res) => {
+//   res.json({ messagejson: "route principale délivrée par le backend" });
+//   // res.sendFile(path.join(__dirname, "mykin/src/app/app.component.html"));
+// });
+
+// // error handler
+// app.use(function (err, req, res, next) {
+//   console.error(err.message);
+//   if (!err.statusCode) err.statusCode = 500;
+//   res.status(err.statusCode).send(err.message);
+// });
+
+// app.use("/img", express.static(path.join(__dirname, "public/images")));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+// // app.get("/", (req, res) => {
+// //   res.json({ messagejson: "route principale délivrée par le backend" });
+// // });
+
+// ///////////////////// Création compte utilistateur/////////////////////
+// app.post("/register", (req, res) => {
+//   console.log("req route poste back: ", req);
+// });
+
+// const httpServer = app.listen(port, () => {
+//   console.log(`Le serveur backend écoute sur le port ${port}`);
+// });

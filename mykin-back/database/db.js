@@ -1,39 +1,27 @@
-const Mongoose = require("mongoose");
-const Schema = Mongoose.Schema;
+const mongoose = require("mongoose");
 
-
-module.exports = {
-  db: 'mongodb+srv://NerVod:MotDePasseMongo@cluster0.aykvr.mongodb.net/mykin?retryWrites=true&w=majority',
+module.exports = function (app) {
+  mongoose.connect(
+    "mongodb+srv://NerVod:MotDePasseMongo@cluster0.aykvr.mongodb.net/mykin?retryWrites=true&w=majority",
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }
+  )
+    .then((connection) => console.log("backend connecté à MongoDB !"))
+    .catch((err) => console.log(err));
+  mongoose.Promise = global.Promise;
+  process.on("SIGINT", cleanup);
+  process.on("SIGTERM", cleanup);
+  process.on("SIGHUP", cleanup);
+  if (app) {
+    app.set("mongoose", mongoose);
+  }
 };
 
-// const Mongoose = require("mongoose");
-// const Schema = Mongoose.Schema;
-// require("dotenv").config();
-// const url = process.env.DB;
+function cleanup() {
+  mongoose.connection.close(function () {
+    process.exit(0);
+  });
+}
 
-// Mongoose.connect(url, { useNewUrlParser: true });
-
-// let User = new Schema(
-//   {
-//     userName: {
-//       type: String,
-//       unique: true,
-//       required: true,
-//       lowercase: true,
-//     },
-//     email: {
-//       type: String,
-//       unique: true,
-//       required: true,
-//       lowercase: true,
-//       trim: true,
-//     },
-//     password: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   { collection: "users" }
-// );
-
-// exports.User = Mongoose.model("User", User);
