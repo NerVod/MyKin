@@ -1,9 +1,11 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { CrudService } from '../service/crud.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as bcrypt from 'bcryptjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from '../services/user/user.service';
+// import { CrudService } from '../service/crud.service';
+// import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-add-user',
@@ -23,10 +25,12 @@ export class RegisterComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router : Router,
     private ngZone: NgZone,
-    private crudService: CrudService,  
-    private http :HttpClient) {
+    // private crudService: CrudService,  
+    private http :HttpClient,
+    private User: UserService
+    ) {
       this.registerForm = this.formBuilder.group({
-        userName: ['', [Validators.required, Validators.minLength(3)]],
+        name: ['', [Validators.required, Validators.minLength(3)]],
         email: ['',[Validators.required, Validators.email]],
         password:['',[ Validators.required, Validators.minLength(8)]],
         // password1:['',[ Validators.required, Validators.minLength(8)]]
@@ -35,8 +39,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {  }
 
-  get userName(): any {
-    return this.registerForm.get('userName');
+  get name(): any {
+    return this.registerForm.get('name');
   }
   get email(): any {
     return this.registerForm.get('email');
@@ -49,23 +53,28 @@ export class RegisterComponent implements OnInit {
   }
 
   registerFormSubmit(form: FormGroup): void {
-    let formData: any = this.registerForm.value;
-    const salt = bcrypt.genSaltSync(10)
-    formData.password = bcrypt.hashSync(formData.password, salt);
-    console.log('formvalue APRES chiffrage password',this.registerForm.value)
-
+    // let formData: any = this.registerForm.value;
+    // const salt = bcrypt.genSaltSync(10)
+    // formData.password = bcrypt.hashSync(formData.password, salt);
+    // console.log('formvalue APRES chiffrage password',this.registerForm.value)
+    
+    this.User.createNewUser(this.registerForm.value).subscribe({
+      next: (v) => console.log('User ajouté avec succès :', v),
+      error: (e) => console.error('error createNewUser :',e),
+      complete: () => this.ngZone.run(() => this.router.navigateByUrl('/login'))
+    })
 
 
    
-    this.crudService.AddUser(this.registerForm.value)
-    .subscribe({
-      next: (v) => console.log('User ajouté avec succès :', v),
-      error: (e) => console.error('error crudservice adduser :',e),
-      complete: () => this.ngZone.run(() => this.router.navigateByUrl('/login'))
+    // this.crudService.AddUser(this.registerForm.value)
+    // .subscribe({
+    //   next: (v) => console.log('User ajouté avec succès :', v),
+    //   error: (e) => console.error('error crudservice adduser :',e),
+    //   complete: () => this.ngZone.run(() => this.router.navigateByUrl('/login'))
     
-    })
+    // })
 
-    console.log('FormData dans registerFormSubmit :',this.registerForm.value);
+    // console.log('FormData dans registerFormSubmit :',this.registerForm.value);
     
   
 

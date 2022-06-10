@@ -2,13 +2,13 @@ const User = require("../model/User");
 
 exports.registerNewUser = async (req, res) => {
   try {
-      console.log('requete dans userHandler ?',req)
+      // console.log('requete dans userHandler ?',req)
     let user = new User({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
     });
-    console.log('req user ? :',req.body.name)
+    // console.log('req user ? :',req.body.name)
     user.password = await user.hashPassword(req.body.password);
     let createdUser = await user.save();
     res.status(200).json({
