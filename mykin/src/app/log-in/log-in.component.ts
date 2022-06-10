@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-log-in',
@@ -7,9 +12,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogInComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup;
 
-  ngOnInit(): void {
+  constructor(
+    public formBuilder: FormBuilder,
+    private router : Router,
+    private ngZone: NgZone,
+    private http :HttpClient,
+    private User: UserService
+  ) {
+    this.loginForm = this.formBuilder.group({
+      email: ['',[Validators.required, Validators.email]],
+      password:['',[ Validators.required, Validators.minLength(8)]],
+    })
+   }
+
+  ngOnInit(): void {  }
+
+  get email(): any {
+    return this.loginForm.get('email');
+  }
+  get password(): any {
+    return this.loginForm.get('password');
   }
 
+  loginFormSubmit(form: FormGroup) : void {
+    console.log('this.loginForm.value :',this.loginForm.value)
+    this.User.userLogin(this.loginForm.value).subscribe({
+      next:(v) => {
+        let token = Object.entries(v)[1][1];
+        // console.log('token ? :',token)
+        localStorage.setItem('Token', token);
+      },
+      error:(e) => console.error('erreur login user :', e),
+      complete: () => this.ngZone.run(() => this.router.navigateByUrl('/home'))
+    })
+  }
 }
