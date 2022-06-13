@@ -69,7 +69,8 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.dataProtegee = async (req, res) => {
+  console.log('req  userhandler backend pour dataprotegee :',req)
   res.json({
-    message: "Pour utilisateur loggé only, quelle chance !"
+    message: " protected Data : Pour utilisateur loggé only, quelle chance !"
   })
 }

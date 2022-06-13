@@ -17,6 +17,7 @@ import { registerLocaleData } from '@angular/common';
 import { WallPostComponent } from './wall-post/wall-post.component';
 import { WallPostListComponent } from './wall-post-list/wall-post-list.component';
 import * as fr from '@angular/common/locales/fr';
+import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 
 @NgModule({
   declarations: [
