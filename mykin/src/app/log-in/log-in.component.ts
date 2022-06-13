@@ -44,7 +44,7 @@ export class LogInComponent implements OnInit {
         // console.log('token ? :',token)
         localStorage.setItem('Token', token);
       },
-      error:(e) => console.error('erreur login user :', e),
+      error:(e) => console.log('erreur login user :', e),
       complete: () => this.ngZone.run(() => this.router.navigateByUrl('/home'))
     })
   }
