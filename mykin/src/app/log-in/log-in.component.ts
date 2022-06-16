@@ -41,7 +41,7 @@ export class LogInComponent implements OnInit {
     this.User.userLogin(this.loginForm.value).subscribe({
       next:(v) => {
         let token = Object.entries(v)[1][1];
-        console.log('token ? :',token)
+        // console.log('token ? :',token)
         localStorage.setItem('Token', token);
       },
       error:(e) => console.log('erreur login user :', e),

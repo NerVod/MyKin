@@ -68,6 +68,16 @@ exports.loginUser = async (req, res) => {
   }
 }
 
+exports.userData = async (req, res) => {
+  // console.log('req  userhandler backend pour userData :',req) 
+  const _User = req.userData.user;
+  // console.log('donnes du user:', _User)
+  res.json({
+    user: _User
+  })
+}
+
+
 exports.dataProtegee = async (req, res) => {
   // console.log('req  userhandler backend pour dataprotegee :',req)
 
@@ -76,17 +86,5 @@ exports.dataProtegee = async (req, res) => {
 
   res.json({
     message: " protected Data : Pour utilisateur loggé only, quelle chance !"
-  })
-}
-
-exports.userData = async (req, res) => {
-  console.log('req  userhandler backend pour userData :',req)
-
-  const _User = req.userData.user;
-  console.log('donnes du user:', _User)
-
-
-  res.json({
-    user: _User
   })
 }

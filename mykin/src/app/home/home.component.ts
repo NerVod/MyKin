@@ -27,8 +27,6 @@ _User$!:Observable<any>;
     this._User$ = this.userService.getUserData().pipe(
       map(value => value = Object.entries(value)),
       map(value => value = value[0][1]['name'])
-      
-    
     )
     // console.log('user homecomponent.ts :', this._User['user'])
   }
