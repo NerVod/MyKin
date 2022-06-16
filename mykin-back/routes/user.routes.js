@@ -7,6 +7,7 @@ router.post("/register", userHandler.registerNewUser);
 router.post("/login", userHandler.loginUser)
 
 router.get("/logged", auth, userHandler.dataProtegee)
+router.get("/user", auth, userHandler.userData)
 
 module.exports = router;
 

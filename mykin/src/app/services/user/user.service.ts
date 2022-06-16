@@ -19,6 +19,9 @@ export class UserService {
   getProtectedData() {
     return this.http.get(`${environment.baseURL}user/logged`)
   }
+  getUserData() {
+    return this.http.get(`${environment.baseURL}user/user`)
+  }
 
 
   constructor(private http: HttpClient) { }
