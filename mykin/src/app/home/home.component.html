@@ -15,10 +15,16 @@
           <div class="login-wrap p-4 p-md-5 mainSpace">
             <div class="d-flex">
               <div class="w-100">
-                <h3 class="mb-4">Bienvenue sur la page d'accueil</h3>
-                <h5 class="mb-4">Partager votre Wall avec ceux qui comptent vraiment !</h5>
-
+                <h3 class="mb-4">Mon Profile MyKin</h3>
+                <h5 class="mb-4">Mettre à jour mes informations :</h5>
               </div>
+            </div>
+            <div class="profile">
+              <ul class="profileInfo">
+                <li> Nom d'utilisateur : {{ _User$ | async}}</li>
+                <li> Email du compte : {{ _Email$ | async}}</li>
+              </ul>
+
             </div>
             
 
