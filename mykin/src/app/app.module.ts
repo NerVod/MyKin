@@ -17,6 +17,7 @@ import { registerLocaleData } from '@angular/common';
 import { WallPostComponent } from './wall-post/wall-post.component';
 import { WallPostListComponent } from './wall-post-list/wall-post-list.component';
 import * as fr from '@angular/common/locales/fr';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import * as fr from '@angular/common/locales/fr';
     RegisterComponent,
     WallPostComponent,
     WallPostListComponent,
+    ContactComponent,
   ],
   imports: [
     AppRoutingModule,
