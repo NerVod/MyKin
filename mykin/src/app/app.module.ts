@@ -18,6 +18,8 @@ import { WallPostComponent } from './wall-post/wall-post.component';
 import { WallPostListComponent } from './wall-post-list/wall-post-list.component';
 import * as fr from '@angular/common/locales/fr';
 import { ContactComponent } from './contact/contact.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { SingleContactComponent } from './single-contact/single-contact.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { ContactComponent } from './contact/contact.component';
     WallPostComponent,
     WallPostListComponent,
     ContactComponent,
+    ContactListComponent,
+    SingleContactComponent,
   ],
   imports: [
     AppRoutingModule,
