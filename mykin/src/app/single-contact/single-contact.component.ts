@@ -25,7 +25,7 @@ export class SingleContactComponent implements OnInit {
 
   onInvite(){
     if(this.contactList.invited === false){
-    this.contactService.inviteContactById(this.contactList.name);
+    this.contactService.inviteContactByName(this.contactList.name);
     this.buttonText = 'Invitation envoyée';
     this.invited = true;
     console.log(`Invitation envoyée à ${this.contactList.name}`)

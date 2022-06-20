@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ContactList } from '../models/contact-list.model';
 import { ContactService } from '../services/contact/contact.service';
 
@@ -10,11 +11,13 @@ import { ContactService } from '../services/contact/contact.service';
 export class ContactListComponent implements OnInit {
 
   contactList!: ContactList[];
+  contactList$!: Observable<ContactList[]>
   
   constructor(private contactService : ContactService) { }
 
   ngOnInit(): void {
-    this.contactList = this.contactService.getAllContacts()
+    this.contactList = this.contactService.getAllContactsHard()
+    this.contactList$ = this.contactService.getAllContacts();
 
   }
   

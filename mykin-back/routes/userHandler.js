@@ -1,3 +1,4 @@
+const { db } = require("../model/User");
 const User = require("../model/User");
 
 exports.registerNewUser = async (req, res) => {
@@ -7,6 +8,8 @@ exports.registerNewUser = async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
+      photoProfile: null,
+      invited: false
     });
     // console.log('req user ? :',req.body.name)
     user.password = await user.hashPassword(req.body.password);

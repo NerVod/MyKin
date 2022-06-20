@@ -22,6 +22,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    photoProfile: {
+      type: String,
+      required: false
+    },
+    invited: {
+      type: Boolean,
+      required: false
+    },
+    id: {
+      type: Number
+    }
+
   },
   { collection: "users", timestamps: true }
 );

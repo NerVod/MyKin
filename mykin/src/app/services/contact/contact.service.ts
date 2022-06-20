@@ -8,51 +8,59 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ContactService {
+
+  constructor(private http: HttpClient) {}
+
       contactList = [
       {
-        id: '1',
+        // id: '1',
         name: 'Han Solo',
         photoProfile:'../../assets/images/han-solo.jpg',
         invited: false
       },
       {
-        id: '2',
+        // id: '2',
         name:'Luke Skywalker',
         photoProfile:'../../assets/images/luke.jpg',
         invited: false
       },
       {
-        id: '3',
+        // id: '3',
         name:'Obi Wan',
         photoProfile:'../../assets/images/obiwan.jpg',
         invited: false
       },
       {
-        id: '4',
+        // id: '4',
         name: 'Han Solo',
         photoProfile:'../../assets/images/han-solo.jpg',
         invited: false
       },
       {
-        id: '5',
+        // id: '5',
         name:'Luke Skywalker',
         photoProfile:'../../assets/images/luke.jpg',
         invited: false
       },
       {
-        id: '6',
+        // id: '6',
         name:'Obi Wan',
         photoProfile:'../../assets/images/obiwan.jpg',
         invited: false
       },
     ];
     
-  getAllContacts(): ContactList[] {
+  getAllContacts(): Observable<ContactList[]> {
+    console.log('user reçu au front :', this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`))
+    return this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`)
+  }
+
+  getAllContactsHard(){
     return this.contactList
   }
 
-  inviteContactById(contactId: string): void{
-    const contact = this.contactList.find(contact => contact.name === contactId);
+  inviteContactByName(contactName: string): void{
+    const contact = this.contactList.find(contact => contact.name === contactName);
     if(contact) {
       contact.invited = true
     } else {
