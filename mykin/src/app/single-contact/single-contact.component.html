@@ -1,4 +1,4 @@
-<div class="contact-card">
+<div class="contact-card" [ngClass]="{invited: invited}">
     <!-- <h2 class="profileName">Nom de l'utilisateur</h2> -->
     <h2 class="profileName">{{ contactList.name}}</h2>
     <div class="photoButton">
@@ -9,7 +9,7 @@
         <div class="containerPhoto" *ngIf="contactList.photoProfile">
             <img class="photoProfile" [src]="contactList.photoProfile" alt=" photo profile"/>
         </div>
-        <button (click)="onInvite()">Inviter</button>
+        <button (click)="onInvite()">{{ buttonText }}</button>
         
     </div>
 </div>

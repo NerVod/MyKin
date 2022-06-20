@@ -8,25 +8,38 @@ import { ContactList } from '../models/contact-list.model';
 })
 export class ContactComponent implements OnInit {
 
-  singleContact!: ContactList;
-  secondContact!: ContactList;
-  troisiemeContact!: ContactList
+  contactList!: ContactList[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.singleContact ={
-     name: 'Han Solo',
-      photoProfile:'../../assets/images/han-solo.jpg'
-    },
-    this.secondContact = {
-      name:'Luke Skywalker',
-      photoProfile:'../../assets/images/luke.jpg'
-    },
-    this.troisiemeContact = {
-      name:'Obi Wan',
-      photoProfile:'../../assets/images/obiwan.jpg'
-    }
+this.contactList = [
+  {
+    name: 'Han Solo',
+    photoProfile:'../../assets/images/han-solo.jpg'
+  },
+  {
+    name:'Luke Skywalker',
+    photoProfile:'../../assets/images/luke.jpg'
+  },
+  {
+    name:'Obi Wan',
+    photoProfile:'../../assets/images/obiwan.jpg'
+  },
+  {
+    name: 'Han Solo',
+    photoProfile:'../../assets/images/han-solo.jpg'
+  },
+  {
+    name:'Luke Skywalker',
+    photoProfile:'../../assets/images/luke.jpg'
+  },
+  {
+    name:'Obi Wan',
+    photoProfile:'../../assets/images/obiwan.jpg'
+  },
+]
+
   }
 
 }
