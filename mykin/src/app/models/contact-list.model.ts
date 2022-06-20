@@ -1,4 +1,5 @@
 export class ContactList {
-    user!: string;
-    photo?: string
+    name!: string;
+    photoProfile?: string;
+   
 }
