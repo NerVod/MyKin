@@ -11,7 +11,7 @@ exports.contactslistData = async (req, res) => {
       });
     } else {
       contactListe.push(_contactListe);
-      console.log(_contactListe);
+      console.log('ContactListe demandée par le front :',_contactListe);
       return _contactListe;
     }
   } catch (err) {
