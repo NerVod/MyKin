@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
 _User$!:Observable<any>;
 _Email$! : Observable<any>;
+_PhotoProfile$! : Observable<any>;
 
 
   getProtectedData() {
@@ -45,6 +46,13 @@ _Email$! : Observable<any>;
       map(value => value = value[0][1]['email']),
       )
       return this._Email$
+  }
+  getPhoto() {
+    this._PhotoProfile$ = this.userService.getUserData().pipe(
+      map(value => value = Object.entries(value)),
+      map(value => value = value[0][1]['photoProfile']),
+      )
+      return this._PhotoProfile$
   }
 
 }

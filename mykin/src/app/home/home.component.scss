@@ -4,3 +4,12 @@
 .profileInfo {
     list-style-type: none;
 }
+
+.photoProfile{
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    margin-top: -25px
+}

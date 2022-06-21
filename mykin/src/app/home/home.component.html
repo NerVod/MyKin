@@ -3,29 +3,44 @@
     <div class="row justify-content-center">
       <div class="col-md-6 text-center mb-5">
         <h2 class="heading-section text-center">Bonjour {{ _User$ | async}} !</h2>
+        <div class="photoProfile">
+          <div class="containerPhoto" *ngIf="!_PhotoProfile$">
+            <img class="photoProfile photo" src="../../assets/images/profil-vide.png" alt="logo profile vide"/>
+          </div>
+          <!-- placeholder pour si image de profile -->
+          <div class="containerPhoto" *ngIf="_PhotoProfile$">
+            <img class="photoProfile" [src]="_PhotoProfile$" alt=" photo profile"/>
+          </div>            
+        </div>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-12 col-lg-10">
         <div class="wrap d-md-flex">
-          <!-- <div
-            class="img"
-            style="background-image: url(../../assets/images/amis.jpg)">
-        </div> -->
+
+
+
+
+
+
           <div class="login-wrap p-4 p-md-5 mainSpace">
             <div class="d-flex">
               <div class="w-100">
-                <h3 class="mb-4">Mon Profile MyKin</h3>
+                  <h3 class="mb-4">Mon Profile MyKin</h3>
                 <h5 class="mb-4">Mettre à jour mes informations :</h5>
               </div>
             </div>
             <div class="profile">
               <ul class="profileInfo">
                 <li> Nom d'utilisateur : {{ _User$ | async}}</li>
+                <!-- <li> Nom : {{ _User$ | async}}</li>
+                <li> Prénom: {{ _User$ | async}}</li> -->
                 <li> Email du compte : {{ _Email$ | async}}</li>
+                <!-- <li> Habite à : {{ _Email$ | async}}</li> -->
               </ul>
-
             </div>
+
+
             
 
           </div>
