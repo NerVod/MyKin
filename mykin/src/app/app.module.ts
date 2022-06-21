@@ -20,7 +20,10 @@ import * as fr from '@angular/common/locales/fr';
 import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { SingleContactComponent } from './single-contact/single-contact.component';
-
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from'@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { SingleContactComponent } from './single-contact/single-contact.componen
     ContactComponent,
     ContactListComponent,
     SingleContactComponent,
+    FileUploadComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -45,6 +49,9 @@ import { SingleContactComponent } from './single-contact/single-contact.componen
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatProgressBarModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' },
