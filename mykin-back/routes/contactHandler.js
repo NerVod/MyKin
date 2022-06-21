@@ -10,8 +10,8 @@ exports.contactslistData = async (req, res)=> {
                 msg: "créer des utilisateurs"
             })
         } else {
-            console.log('_contactListe[0].name :', _contactListe[0].name)
-            console.log('_contactListe[1].name :', _contactListe[1].name)
+            // console.log('_contactListe[0].name :', _contactListe[0].name)
+            // console.log('_contactListe[1].name :', _contactListe[1].name)
             for(let user of _contactListe ){
                 console.log('user :', user)
                 console.log('user.name :', user.name)
@@ -20,7 +20,7 @@ exports.contactslistData = async (req, res)=> {
                 let _User = {name: user.name, photoProfile: user.photoProfile,invited: user.invited}
                 contactListe.push(_User)
             }
-            console.log('contactliste filtré :', contactListe)
+            // console.log('contactliste filtré :', contactListe)
             // contactListe.push(_contactListe)
             res.json(contactListe)
             // return contactListe
