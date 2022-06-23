@@ -37,7 +37,16 @@ const userSchema = new Schema(
     },
     id: {
       type: Number
-    }
+    },
+    invitEnAttente: {
+      type: Array,
+      required: false
+    },
+    amis: {
+      type: Array,
+      required: false
+    },
+    
 
   },
   { collection: "users", timestamps: true }

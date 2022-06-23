@@ -33,3 +33,63 @@ exports.contactslistData = async (req, res)=> {
         })
     }
 }
+
+exports.invitationContact = async ( req, res) => {
+
+    console.log("requete invitationContact", req.params)
+    const userInvited = req.params.id;
+    const inviteur = req.params.param
+    console.log("mail requete back :", userInvited)
+    console.log("mail requete back Inviteur :", inviteur)
+    const userUpdated = [];
+
+    try {
+        const _userInvited = await User.findOne(
+            {email : req.params.id},
+            (err, user) => {
+            if(!err){
+                // console.log("liste en attente deja en bdd: ", user.invitEnAttente )
+                const invitations = user.invitEnAttente
+
+                for(let i=0; i<invitations.length; i++){
+                    if(invitations[i] === inviteur){
+                        console.log('invitation déjà en attente')
+                        return
+                    } else {
+                        console.log("pas de doublon d'invitation")
+                    }
+                    invitations.push(inviteur)
+                }
+
+                // console.log("liste invit updated a sauvegarder: ", user.invitEnAttente )
+                User.updateOne(
+                    {email: userInvited},
+                    {invitEnAttente: invitations }, 
+                function (err, docs) {
+                    if(err){
+                        console.log('err dans if de updateOne :',err)
+                    }
+                    else{
+                        console.log("user mis à jour", docs)
+                    }
+                }
+                
+                )
+                console.log("user updated ", user)
+                res.json({
+                    msg: `invitation envoyée à ${user.name}`
+                })
+            }else {
+                console.log(err)
+            }
+        })
+    } catch {
+        console.log("pas de user trouvé")
+    }
+
+
+
+    res.json({
+        msg: 'demande invit reçue au back'
+    })
+}

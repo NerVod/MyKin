@@ -68,7 +68,7 @@ export class ContactService {
   }
 
   getPhotoProfile(account: string) {
-    console.log(`singlecontact component req envoyée pour photoprofile ${environment.baseURL}user/photoprofile/${account}`)
+    // console.log(`singlecontact component req envoyée pour photoprofile ${environment.baseURL}user/photoprofile/${account}`)
     return this.http.get(`${environment.baseURL}user/photoprofile/${account}`)
   
   }
@@ -80,13 +80,14 @@ export class ContactService {
     return this.contactList
   }
 
-  inviteContactByName(contactName: string): void{
-    const contact = this.contactList.find(contact => contact.name === contactName);
-    if(contact) {
-      contact.invited = true
-    } else {
-      throw new Error('contact introuvable');
-    }
+  inviteContact(contactMail: string): Observable<ContactList[]>{
+    // console.log('localStorage :',localStorage['user'])
+    const inviteur = localStorage['user']
+    console.log("Envoi invitation à :", contactMail)
+    console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
+    
+    return this.http.get<ContactList[]>(`${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
+
   }
   
 //   constructor(private http: HttpClient) { }

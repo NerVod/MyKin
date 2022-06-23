@@ -73,9 +73,9 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.userData = async (req, res) => {
-  console.log('req  userhandler backend pour userData :',req) 
+  // console.log('req  userhandler backend pour userData :',req) 
   const _User = req.userData.user;
-  console.log('donnes du user:', _User)
+  // console.log('donnes du user:', _User)
   res.json({
     user: _User
   })
