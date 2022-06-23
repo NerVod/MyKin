@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user/user.service';
-import { map, Observable } from 'rxjs';
+import { map,tap,  Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-_User$!:Observable<any>;
+_Nom$!:Observable<any>;
+_Prenom$!:Observable<any>;
 _Email$! : Observable<any>;
 _PhotoProfile$! : Observable<any>;
 
@@ -28,17 +29,26 @@ _PhotoProfile$! : Observable<any>;
     // this.getProtectedData()
     // this._User$ = this.userService.getUserData().subscribe((data: any) => console.log('data du user :', data.user))
 
-    this._User$= this.getName();
+    this._Nom$= this.getName();
+    this._Prenom$= this.getPrenom();
     this._Email$ = this.getEmail()
     // console.log('user homecomponent.ts :', this._User['user'])
   }
 
   getName() {
-    this._User$ = this.userService.getUserData().pipe(
+    this._Nom$ = this.userService.getUserData().pipe(
+      tap(value => console.log('value getName',value)),
       map(value => value = Object.entries(value)),
       map(value => value = value[0][1]['name']),
       )
-      return this._User$
+      return this._Nom$
+  }
+  getPrenom() {
+    this._Prenom$ = this.userService.getUserData().pipe(
+      map(value => value = Object.entries(value)),
+      map(value => value = value[0][1]['prenom']),
+      )
+      return this._Prenom$
   }
   getEmail() {
     this._Email$ = this.userService.getUserData().pipe(

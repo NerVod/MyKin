@@ -5,6 +5,7 @@ exports.registerNewUser = async (req, res) => {
   try {
       // console.log('requete dans userHandler ?',req)
     let user = new User({
+      prenom: req.body.prenom,
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
@@ -72,9 +73,9 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.userData = async (req, res) => {
-  // console.log('req  userhandler backend pour userData :',req) 
+  console.log('req  userhandler backend pour userData :',req) 
   const _User = req.userData.user;
-  // console.log('donnes du user:', _User)
+  console.log('donnes du user:', _User)
   res.json({
     user: _User
   })
@@ -89,5 +90,20 @@ exports.dataProtegee = async (req, res) => {
 
   res.json({
     message: " protected Data : Pour utilisateur loggé only, quelle chance !"
+  })
+}
+
+exports.photoprofile = async (req, res)=> {
+  console.log('req userhandlerbackend',req.params.id)
+  let email= req.params.id
+
+/////////////////////////////////////////////////////
+  // faire recherche de la photo dans mongo ici
+/////////////////////////////////////////////////////
+
+
+
+  res.json({
+    msg : `route photoprofile ${email}`
   })
 }

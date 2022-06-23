@@ -28,6 +28,14 @@
                         <div *ngIf="name.touched && name.errors?.minlength" class="d-block invalid-feedback">Veuillez saisir un nom d'utilisateur d'au moins 3 caractères.</div>
                     </div>
             </div>
+            <div class="col-md-12">
+                <label for="id_prenom" class="form-label">Prénom </label>
+                <input formControlName="prenom" type="text" class="form-control" id="id_prenom" required>
+                    <div>
+                        <div *ngIf="prenom.touched && prenom.errors?.required" class="d-block invalid-feedback">Veuillez saisir un nom d'utilisateur.</div>
+                        <div *ngIf="prenom.touched && prenom.errors?.minlength" class="d-block invalid-feedback">Veuillez saisir un nom d'utilisateur d'au moins 3 caractères.</div>
+                    </div>
+            </div>
 
             <div class="col-md-12">
                 <label for="id_email" class="form-label">Adresse email</label>

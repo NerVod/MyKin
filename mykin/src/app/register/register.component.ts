@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
     ) {
       this.registerForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.minLength(3)]],
+        prenom: ['', [Validators.required, Validators.minLength(3)]],
         email: ['',[Validators.required, Validators.email]],
         password:['',[ Validators.required, Validators.minLength(8)]],
         // password1:['',[ Validators.required, Validators.minLength(8)]]
@@ -41,6 +42,9 @@ export class RegisterComponent implements OnInit {
 
   get name(): any {
     return this.registerForm.get('name');
+  }
+  get prenom(): any {
+    return this.registerForm.get('prenom');
   }
   get email(): any {
     return this.registerForm.get('email');

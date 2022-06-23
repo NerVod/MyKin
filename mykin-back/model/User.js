@@ -11,6 +11,11 @@ const userSchema = new Schema(
       unique: true,
       required: true,
     },
+    prenom: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     email: {
       type: String,
       unique: true,
@@ -23,7 +28,7 @@ const userSchema = new Schema(
       required: true,
     },
     photoProfile: {
-      type: String,
+      type: Buffer,
       required: false
     },
     invited: {

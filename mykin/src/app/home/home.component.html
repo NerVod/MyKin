@@ -2,7 +2,7 @@
   <!-- <div class="container"> -->
     <div class="row justify-content-center">
       <div class="col-md-6 text-center mb-5">
-        <h2 class="heading-section text-center">Bonjour {{ _User$ | async}} !</h2>
+        <h2 class="heading-section text-center">Bonjour {{ _Prenom$ | async}} !</h2>
         <div class="photoProfile">
           <div class="containerPhoto" *ngIf="!_PhotoProfile$">
             <img class="photoProfile photo" src="../../assets/images/profil-vide.png" alt="logo profile vide"/>
@@ -32,9 +32,9 @@
             </div>
             <div class="profile">
               <ul class="profileInfo">
-                <li> Nom d'utilisateur : {{ _User$ | async}}</li>
-                <!-- <li> Nom : {{ _User$ | async}}</li>
-                <li> Prénom: {{ _User$ | async}}</li> -->
+                <!-- <li> Nom d'utilisateur : {{ _User$ | async}}</li> -->
+                <li> Prénom: {{ _Prenom$ | async}}</li>
+                <li> Nom : {{ _Nom$ | async}}</li>
                 <li> Email du compte : {{ _Email$ | async}}</li>
                 <!-- <li> Habite à : {{ _Email$ | async}}</li> -->
                 <li> Modifier ma photo : <app-file-upload></app-file-upload></li>
