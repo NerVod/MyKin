@@ -1,6 +1,7 @@
 const User = require('../model/User');
 
 exports.contactslistData = async (req, res)=> {
+    // console.log("reqparam contactlistdata contacthandler :", req.query.name)
     let contactListe = []
     try {
         const _contactListe = await User.find();
@@ -18,7 +19,9 @@ exports.contactslistData = async (req, res)=> {
                 // console.log('user.photoProfile :', user.photoProfile)
                 // console.log('user.invited :', user.invited)
                 let _User = {name: user.name, prenom: user.prenom, photoProfile: user.photoProfile,invited: user.invited, email: user.email}
-                contactListe.push(_User)
+                if(_User.email !== req.query.name){
+                    contactListe.push(_User)
+                } 
             }
             // console.log('contactliste filtré :', contactListe)
             // contactListe.push(_contactListe)

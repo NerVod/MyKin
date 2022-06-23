@@ -63,8 +63,9 @@ export class ContactService {
     ];
     
   getAllContacts(): Observable<ContactList[]> {
+    const user = localStorage['user']
     console.log('user reçu au front :', this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`))
-    return this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`)
+    return this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist/?name=${user}`)
   }
 
   getPhotoProfile(account: string) {
