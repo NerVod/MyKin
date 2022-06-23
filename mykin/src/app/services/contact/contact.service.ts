@@ -8,45 +8,57 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ContactService {
+  
 
   constructor(private http: HttpClient) {}
-
       contactList = [
       {
         // id: '1',
-        name: 'Han Solo',
+        name: 'Solo',
+        prenom : 'Han',
         photoProfile:'../../assets/images/han-solo.jpg',
-        invited: false
+        invited: false,
+        email:''
       },
       {
         // id: '2',
-        name:'Luke Skywalker',
+        name:'Skywalker',
+        prenom : 'Luke',
         photoProfile:'../../assets/images/luke.jpg',
-        invited: false
+        invited: false,
+        email:''
       },
       {
         // id: '3',
-        name:'Obi Wan',
+        name:'Kenobi',
+        prenom : 'Obi-Wan',
         photoProfile:'../../assets/images/obiwan.jpg',
-        invited: false
+        invited: false,
+        email:''
       },
       {
         // id: '4',
-        name: 'Han Solo',
+        name: 'Solo',
+        prenom : 'Han',
         photoProfile:'../../assets/images/han-solo.jpg',
-        invited: false
+        invited: false,
+        email:''
       },
       {
         // id: '5',
-        name:'Luke Skywalker',
+        name:'Skywalker',
+        prenom : 'Luke',
         photoProfile:'../../assets/images/luke.jpg',
-        invited: false
+        invited: false,
+        email:''
       },
       {
         // id: '6',
-        name:'Obi Wan',
+        name:'Kenobi',
+        prenom : 'Obi-Wan',
         photoProfile:'../../assets/images/obiwan.jpg',
-        invited: false
+        invited: false,
+        email:''
       },
     ];
     
@@ -54,6 +66,15 @@ export class ContactService {
     console.log('user reçu au front :', this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`))
     return this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`)
   }
+
+  getPhotoProfile(account: string) {
+    console.log(`singlecontact component req envoyée pour photoprofile ${environment.baseURL}user/photoprofile/${account}`)
+    return this.http.get(`${environment.baseURL}user/photoprofile/${account}`)
+  
+  }
+
+
+
 
   getAllContactsHard(){
     return this.contactList

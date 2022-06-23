@@ -13,11 +13,11 @@ exports.contactslistData = async (req, res)=> {
             // console.log('_contactListe[0].name :', _contactListe[0].name)
             // console.log('_contactListe[1].name :', _contactListe[1].name)
             for(let user of _contactListe ){
-                console.log('user :', user)
-                console.log('user.name :', user.name)
-                console.log('user.photoProfile :', user.photoProfile)
-                console.log('user.invited :', user.invited)
-                let _User = {name: user.name, photoProfile: user.photoProfile,invited: user.invited}
+                // console.log('user :', user)
+                // console.log('user.name :', user.name)
+                // console.log('user.photoProfile :', user.photoProfile)
+                // console.log('user.invited :', user.invited)
+                let _User = {name: user.name, prenom: user.prenom, photoProfile: user.photoProfile,invited: user.invited, email: user.email}
                 contactListe.push(_User)
             }
             // console.log('contactliste filtré :', contactListe)

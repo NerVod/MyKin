@@ -1,6 +1,6 @@
 <div class="contact-card" [ngClass]="{invited: invited}">
     <!-- <h2 class="profileName">Nom de l'utilisateur</h2> -->
-    <h2 class="profileName">{{ contactList.name}}</h2>
+    <h2 class="profileName">{{ contactList.prenom }} {{ contactList.name }}</h2>
     <div class="photoButton">
         <div class="containerPhoto" *ngIf="!contactList.photoProfile">
             <img class="photoProfile photo" src="../../assets/images/profil-vide.png" alt="logo profile vide"/>

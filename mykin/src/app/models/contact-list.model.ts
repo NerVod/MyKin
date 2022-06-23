@@ -1,9 +1,10 @@
 export class ContactList {
     // id!: string;
     name!: string;
-    // email!: string;
+    prenom!: string;
+    email!: string;
     // password!: string;
-    photoProfile?: string;
+    photoProfile?: any;
     invited: boolean = false;
     // createdAt?: Date;
     // updatedAt?: Date;
