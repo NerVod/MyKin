@@ -42,6 +42,7 @@ exports.loginUser = async (req, res) => {
               type: "Utilisateur introuvable",
               msg: "Vérifier les données saisies"
           })
+          return
       }
       let match = await user.compareUserPassword(login.password, user.password);
       if (match) {
