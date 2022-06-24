@@ -64,7 +64,7 @@ export class ContactService {
     
   getAllContacts(): Observable<ContactList[]> {
     const user = localStorage['user']
-    console.log('user reçu au front :', this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`))
+    // console.log('user reçu au front :', this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist/?name=${user}`))
     return this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist/?name=${user}`)
   }
 
@@ -82,23 +82,13 @@ export class ContactService {
   }
 
   inviteContact(contactMail: string): Observable<ContactList[]>{
-    // console.log('localStorage :',localStorage['user'])
     const inviteur = localStorage['user']
-    console.log("Envoi invitation à :", contactMail)
-    console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
-    
+    // console.log("Envoi invitation à :", contactMail)
+    // console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
     return this.http.get<ContactList[]>(`${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
 
   }
   
-//   constructor(private http: HttpClient) { }
-  
-//   contactList: ContactList[] = [];
-
-// getAllContacts(): Observable<ContactList[]> {
-//   return this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist`)
-// }
-
 
 }
 
