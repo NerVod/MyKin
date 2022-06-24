@@ -42,6 +42,10 @@ const userSchema = new Schema(
       type: Array,
       required: false
     },
+    invitEnvoyee: {
+      type: Array,
+      required: false
+    },
     amis: {
       type: Array,
       required: false
