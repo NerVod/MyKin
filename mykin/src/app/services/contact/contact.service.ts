@@ -71,7 +71,6 @@ export class ContactService {
   getPhotoProfile(account: string) {
     // console.log(`singlecontact component req envoyée pour photoprofile ${environment.baseURL}user/photoprofile/${account}`)
     return this.http.get(`${environment.baseURL}user/photoprofile/${account}`)
-  
   }
 
 
@@ -86,9 +85,15 @@ export class ContactService {
     // console.log("Envoi invitation à :", contactMail)
     // console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
     return this.http.get<ContactList[]>(`${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
+  }
+
+  updateListeDemandeEnvoyee(contactMail: string): Observable<ContactList[]>{
+    const inviteur = localStorage['user']
+    // console.log("Envoi invitation à :", contactMail)
+    // console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
+    return this.http.get<ContactList[]>(`${environment.baseURL}user/updatedemandeenvoyee/${contactMail}/${inviteur}`)
 
   }
-  
 
 }
 

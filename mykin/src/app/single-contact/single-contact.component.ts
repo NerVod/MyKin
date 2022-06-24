@@ -31,13 +31,14 @@ export class SingleContactComponent implements OnInit {
     this.contactService.getPhotoProfile(`${this.user}`);
    
     
-    console.log('singlecontactcomponent avant sanitize :', this.photoProfile )
+    // console.log('singlecontactcomponent avant sanitize :', this.photoProfile )
 
   }
 
   onInvite(){
     if(this.contactList.invited === false){
     this.contactService.inviteContact(this.contactList.email).subscribe();
+    this.contactService.updateListeDemandeEnvoyee(this.contactList.email).subscribe()
     this.buttonText = 'Invitation envoyée';
     this.invited = true;
     console.log(`Invitation envoyée à ${this.contactList.name}`)
