@@ -1,0 +1,15 @@
+<p>invit-attente works!</p>
+<div class="contact-card">
+    <h2 class="profileName">{{ contactList.prenom }} {{ contactList.name }}</h2>
+    <div class="photoButton">
+        <div class="containerPhoto" *ngIf="!contactList.photoProfile">
+            <img class="photoProfile photo" src="../../assets/images/profil-vide.png" alt="logo profile vide"/>
+        </div>
+        <!-- placeholder pour si image de profile -->
+        <div class="containerPhoto" *ngIf="contactList.photoProfile">
+            <img class="photoProfile" [src]="contactList.photoProfile" alt=" photo profile"/>
+        </div>
+        <button (click)="onAccept()">{{ buttonText }}</button>
+        
+    </div>
+</div>

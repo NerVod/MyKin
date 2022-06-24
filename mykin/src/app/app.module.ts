@@ -24,6 +24,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from'@angular/material/progress-bar';
+import { InvitAttenteComponent } from './invit-attente/invit-attente.component';
+import { InviteAttenteListeComponent } from './invite-attente-liste/invite-attente-liste.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { MatProgressBarModule } from'@angular/material/progress-bar';
     ContactListComponent,
     SingleContactComponent,
     FileUploadComponent,
+    InvitAttenteComponent,
+    InviteAttenteListeComponent,
   ],
   imports: [
     AppRoutingModule,
