@@ -37,12 +37,13 @@ export class LogInComponent implements OnInit {
   }
 
   loginFormSubmit(form: FormGroup) : void {
-    console.log('this.loginForm.value :',this.loginForm.value)
+
     this.User.userLogin(this.loginForm.value).subscribe({
       next:(v) => {
         let token = Object.entries(v)[1][1];
-        // console.log('token ? :',token)
+        let user = Object.entries(v)[2][1]['email'];
         localStorage.setItem('Token', token);
+        localStorage.setItem('user', user)
       },
       error:(e) => console.log('erreur login user :', e),
       complete: () => this.ngZone.run(() => this.router.navigateByUrl('/home'))
