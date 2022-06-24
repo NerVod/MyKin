@@ -5,28 +5,27 @@ exports.contactslistData = async (req, res)=> {
     let contactListe = []
     try {
         const _contactListe = await User.find();
+        // console.log('_contactListe totale %%%%%%%%%%%%%%% ', _contactListe)
         if(!User){
             res.status(400).json({
-                type: "liste d'utilisatuers vide",
+                type: "liste d'utilisateurs vide",
                 msg: "créer des utilisateurs"
             })
         } else {
-            // console.log('_contactListe[0].name :', _contactListe[0].name)
-            // console.log('_contactListe[1].name :', _contactListe[1].name)
+
             for(let user of _contactListe ){
-                // console.log('user :', user)
-                // console.log('user.name :', user.name)
-                // console.log('user.photoProfile :', user.photoProfile)
-                // console.log('user.invited :', user.invited)
+
                 let _User = {name: user.name, prenom: user.prenom, photoProfile: user.photoProfile,invited: user.invited, email: user.email}
-                if(_User.email !== req.query.name){
-                    contactListe.push(_User)
+                console.log('_User.email', _User.email)
+                if(_User.email != req.query.name){
+                    contactListe.push(_User);
+                    console.log('contactListe en remplissage :', contactListe)
                 } 
             }
             // console.log('contactliste filtré :', contactListe)
-            // contactListe.push(_contactListe)
+
             res.json(contactListe)
-            // return contactListe
+
         } 
     } catch (err) {
         console.log(err)
@@ -51,20 +50,26 @@ exports.invitationContact = async ( req, res) => {
             {email : req.params.id},
             (err, user) => {
             if(!err){
-                // console.log("liste en attente deja en bdd: ", user.invitEnAttente )
-                const invitations = user.invitEnAttente
 
-                for(let i=0; i<invitations.length; i++){
-                    if(invitations[i] === inviteur){
-                        console.log('invitation déjà en attente')
-                        return
-                    } else {
-                        console.log("pas de doublon d'invitation")
+                let invitations = user.invitEnAttente
+
+                    for(let i=0; i <  invitations.length; i++){
+                        
+                        if(invitations[i] === inviteur){
+                            console.log('invitation déjà en attente :', invitations[i])
+                            res.json({
+                                msg: `invitation déjà envoyée à ${userInvited}`
+                            })
+                            return
+                        } else {
+                            console.log("pas de doublon d'invitation")
+                        }    
                     }
+                    console.log('mail to push :', inviteur)
                     invitations.push(inviteur)
-                }
+                    console.log('invitations à sauvegarder dans bdd :', invitations)
 
-                // console.log("liste invit updated a sauvegarder: ", user.invitEnAttente )
+
                 User.updateOne(
                     {email: userInvited},
                     {invitEnAttente: invitations }, 
@@ -90,9 +95,4 @@ exports.invitationContact = async ( req, res) => {
         console.log("pas de user trouvé")
     }
 
-
-
-    res.json({
-        msg: 'demande invit reçue au back'
-    })
 }
