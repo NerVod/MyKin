@@ -99,5 +99,12 @@ export class ContactService {
     return this.http.get(`${environment.baseURL}user/isinvited/${contactMail}/${inviteur}`)
   }
 
+  getInvitEnAttente(){
+    const inviteur = localStorage['user'];
+    console.log("URL envoi :",`${environment.baseURL}user/getinvitattente/${inviteur}`)
+    return this.http.get<ContactList[]>(`${environment.baseURL}user/getinvitattente/${inviteur}`)
+  }
+
+
 }
 

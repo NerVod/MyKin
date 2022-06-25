@@ -5,7 +5,6 @@ exports.contactslistData = async (req, res)=> {
     let contactListe = []
     try {
         const _contactListe = await User.find();
-        // console.log('_contactListe totale %%%%%%%%%%%%%%% ', _contactListe)
         if(!User){
             res.status(400).json({
                 type: "liste d'utilisateurs vide",
@@ -159,33 +158,80 @@ exports.updatedemandeenvoyee = async ( req, res) => {
 }
 
 exports.isinvited = async (req, res) => {
-    const userInvited = req.params.id;
-    const inviteur = req.params.param;
+  const userInvited = req.params.id;
+  const inviteur = req.params.param;
 
-try {
-    const _inviteur = await User.findOne(
-        {email : inviteur},
-        (err, user) => {
-            if(!err){
-                console.log(user)
-                let invitations = user.invitEnvoyee
-
-                for(let i=0; i <  invitations.length; i++){
-                    if(invitations[i] === userInvited){
-                        res.json({isInvited: true})
-                        return
-                    }
-                }
-                res.json({isInvited :false})
-                return
-
-            } else {
-                console.log(' err dans le else', err)
-            }
+  try {
+    const _inviteur = await User.findOne({ email: inviteur }, (err, user) => {
+      if (!err) {
+        console.log(user);
+        let invitations = user.invitEnvoyee;
+        if(invitations.length == 0){
+            res.json({msg: "pas de demande en attente"})
+            return
         }
-    )
-} catch {
-    console.log("erreur de recherche d'invitation envoyée")
-}
 
-}
+        for (let i = 0; i < invitations.length; i++) {
+          if (invitations[i] === userInvited) {
+            res.json({ isInvited: true });
+            return;
+          }
+        }
+        res.json({ isInvited: false });
+        return;
+      } else {
+        console.log(" err dans le else", err);
+      }
+    });
+  } catch {
+    console.log("erreur de recherche d'invitation isinvited");
+  }
+};
+
+
+exports.getInvitAttente = async (req, res) => {
+  const inviteur = req.params.id;
+  console.log('inviteur :', inviteur)
+  const contactListe = [];
+
+  try {
+    const _contactListe = await User.find();
+
+    User.findOne({ email: inviteur }, (err, user) => {
+      if (!err) {
+        let invitations = user.invitEnAttente;
+        // console.log('user.invitEnAttente', user.invitEnAttente)
+            if(invitations.length == 0){
+                res.json({msg: "pas de demande en attente"})
+                return
+            }
+        for (let user of invitations) {
+          User.findOne({ email: user }, (err, contact) => {
+            if (!err) {
+              let _User = {
+                name: contact.name,
+                prenom: contact.prenom,
+                photoProfile: contact.photoProfile,
+                invited: contact.invited,
+                email: contact.email,
+              };
+              contactListe.push(_User);
+            }
+
+            if (invitations.length === contactListe.length) {
+                // console.log(' contactListe en attente :', contactListe)
+              res.json(contactListe);
+            }
+
+          });
+        }
+      } else {
+        res.json({msg: 'pas de demande user'})
+        return
+      }
+    });
+  } catch {
+    console.log("une erreur s'est produite");
+    res.json({ msg: "erreur de recherche liste invitations en attente" });
+  }
+};

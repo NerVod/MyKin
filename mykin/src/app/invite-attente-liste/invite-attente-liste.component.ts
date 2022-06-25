@@ -17,7 +17,8 @@ export class InviteAttenteListeComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactList = this.contactService.getAllContactsHard()
-    // this.contactList$ = this.contactService.getInvitEnvoyees()
+    this.contactList$ = this.contactService.getInvitEnAttente()
+    
   }
 
 }

@@ -1,5 +1,5 @@
-<!-- <p>invite-attente-liste DATA FROM SERVER works!</p>
-<app-invit-attente *ngFor="let singleContact of contactList$"[contactList]="singleContact"></app-invit-attente> -->
+<p>invite-attente-liste DATA FROM SERVER works!</p>
+<app-invit-attente *ngFor="let singleContact of contactList$ | async"[contactList]="singleContact"></app-invit-attente>
 
-<p>invite-attente-liste DATA EN DUR works!</p>
-<app-invit-attente *ngFor="let singleContact of contactList"[contactList]="singleContact"></app-invit-attente>
+<!-- <p>invite-attente-liste DATA EN DUR works!</p>
+<app-invit-attente *ngFor="let singleContact of contactList"[contactList]="singleContact"></app-invit-attente> -->
