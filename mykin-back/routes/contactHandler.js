@@ -104,7 +104,7 @@ exports.updatedemandeenvoyee = async ( req, res) => {
     const inviteur = req.params.param
     // console.log("update liste demande envoyee userInvited :", userInvited)
     // console.log("update liste demande envoyee Inviteur :", inviteur)
-    const userUpdated = [];
+    // const userUpdated = [];
 
     try {
         const _inviteur = await User.findOne(
@@ -155,5 +155,37 @@ exports.updatedemandeenvoyee = async ( req, res) => {
     } catch {
         console.log("pas de user trouvé")
     }
+
+}
+
+exports.isinvited = async (req, res) => {
+    const userInvited = req.params.id;
+    const inviteur = req.params.param;
+
+try {
+    const _inviteur = await User.findOne(
+        {email : inviteur},
+        (err, user) => {
+            if(!err){
+                console.log(user)
+                let invitations = user.invitEnvoyee
+
+                for(let i=0; i <  invitations.length; i++){
+                    if(invitations[i] === userInvited){
+                        res.json({isInvited: true})
+                        return
+                    }
+                }
+                res.json({isInvited :false})
+                return
+
+            } else {
+                console.log(' err dans le else', err)
+            }
+        }
+    )
+} catch {
+    console.log("erreur de recherche d'invitation envoyée")
+}
 
 }

@@ -16,7 +16,7 @@ export class SingleContactComponent implements OnInit {
   @Input() contactList!: ContactList;
   
   buttonText!: string;
-  invited!: boolean;
+  invited!: any;
   photoProfile!: any;
   user!: string
 
@@ -24,8 +24,10 @@ export class SingleContactComponent implements OnInit {
   constructor(private contactService: ContactService,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.buttonText = 'Inviter';
-    this.invited = this.contactList.invited;
+    // this.buttonText = 'Inviter';
+    // this.invited = this.contactList.invited;
+    this.contactService.isinvited(this.contactList.email).subscribe(data => this.invited =(Object.entries(data)[0][1] ) );
+    this.buttonStatus()
     this.photoProfile = this.contactList.photoProfile;
     this.user = this.contactList.email;
     this.contactService.getPhotoProfile(`${this.user}`);
@@ -43,6 +45,18 @@ export class SingleContactComponent implements OnInit {
     this.invited = true;
     console.log(`Invitation envoyée à ${this.contactList.name}`)
     }
+  }
+
+  buttonStatus(){
+    console.log('this.invited pre timeout', this.invited)
+    setTimeout(() => {
+      if(this.invited === true){
+        this.buttonText = 'invitation envoyée'
+        console.log('this.invited post timeout', this.invited)
+      } else {
+        this.buttonText = 'Inviter'
+      }
+      }, 30);
   }
 
 

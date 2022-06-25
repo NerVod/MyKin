@@ -92,7 +92,11 @@ export class ContactService {
     // console.log("Envoi invitation à :", contactMail)
     // console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
     return this.http.get<ContactList[]>(`${environment.baseURL}user/updatedemandeenvoyee/${contactMail}/${inviteur}`)
+  }
 
+  isinvited(contactMail: string){
+    const inviteur = localStorage['user']   
+    return this.http.get(`${environment.baseURL}user/isinvited/${contactMail}/${inviteur}`)
   }
 
 }

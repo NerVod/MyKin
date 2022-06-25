@@ -19,6 +19,7 @@ router.get("/user", auth, userHandler.userData);
 router.get("/contactslist", auth, contactHandler.contactslistData );
 router.get("/invitecontact/:id/:param", auth,  contactHandler.invitationContact );
 router.get("/updatedemandeenvoyee/:id/:param", auth, contactHandler.updatedemandeenvoyee)
+router.get("/isinvited/:id/:param", auth, contactHandler.isinvited)
 
 
 module.exports = router;
