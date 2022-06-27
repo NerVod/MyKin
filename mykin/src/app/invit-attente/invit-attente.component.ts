@@ -32,7 +32,7 @@ export class InvitAttenteComponent implements OnInit {
   onAccept() {
     console.log('invitation acceptée')
     this.contactService.accepterAmi(this.contactList.email).pipe(
-      tap(() => this.ngZone.run(() => this.router.navigateByUrl('/contact')) )
+      tap(() => this.ngZone.run(() => this.router.navigateByUrl('/home')) )
     ).subscribe();
     this.buttonText = 'Invitation acceptée';
 
