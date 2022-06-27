@@ -3,6 +3,8 @@ const User = require('../model/User');
 exports.contactslistData = async (req, res)=> {
     // console.log("reqparam contactlistdata contacthandler :", req.query.name)
     let contactListe = []
+    let listeUserActifFiltré = []
+    const activeUser = req.params.id;
     try {
         const _contactListe = await User.find();
         if(!User){
@@ -12,16 +14,54 @@ exports.contactslistData = async (req, res)=> {
             })
         } else {
 
+            // console.log("_contactListe :", _contactListe)
+            function checkUserActif(User){
+                return User.email !== activeUser
+            }
+
+            function getActiveUser(User){
+                return User.email === activeUser
+            }
+
+            const utilisateur =_contactListe.filter( checkUserActif )
+            // console.log('useractif filtré :', utilisateur)
+            for(contact of utilisateur) {
+                let _User = {name: contact.name, prenom: contact.prenom, photoProfile: contact.photoProfile,invited: contact.invited, email: contact.email}
+                listeUserActifFiltré.push(_User)
+            }
+            // console.log('liste formatée useractif filtré :', listeUserActifFiltré)
+
+
+            const activeAccount = _contactListe.filter(getActiveUser)
+            // console.log("active account :", activeAccount)
+
+            const listeAmisAFiltrer = activeAccount[0].amis;
+            // console.log("liste amis a enlever :", listeAmisAFiltrer)
+
+
+
+
             for(let user of _contactListe ){
 
                 let _User = {name: user.name, prenom: user.prenom, photoProfile: user.photoProfile,invited: user.invited, email: user.email}
                 // console.log('_User.email', _User.email)
-                if(_User.email != req.query.name){
+                if(_User.email != activeUser){
+                    
                     contactListe.push(_User);
                     // console.log('contactListe en remplissage :', contactListe)
                 } 
             }
-            // console.log('contactliste filtré :', contactListe)
+
+           for(ami of listeAmisAFiltrer){
+            console.log('ami ??? :', ami)
+                    contactListe.filter(function(el) { if (el.email === ami) {contactListe.splice(el, 1)}} )
+                    // console.log("contactListe filtrage §§§§§§§§", contactListe)
+            }
+        
+
+            // console.log('contactliste sans userActif ni ami ?????? :', contactListe)
+
+
 
             res.json(contactListe)
 
