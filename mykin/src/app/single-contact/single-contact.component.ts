@@ -48,15 +48,15 @@ export class SingleContactComponent implements OnInit {
   }
 
   buttonStatus(){
-    console.log('this.invited pre timeout', this.invited)
+    // console.log('this.invited pre timeout', this.invited)
     setTimeout(() => {
       if(this.invited === true){
         this.buttonText = 'invitation envoyée'
-        console.log('this.invited post timeout', this.invited)
+        // console.log('this.invited post timeout', this.invited)
       } else {
         this.buttonText = 'Inviter'
       }
-      }, 30);
+      }, 50);
   }
 
 

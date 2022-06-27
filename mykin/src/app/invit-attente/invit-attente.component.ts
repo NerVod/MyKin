@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, NgZone, OnInit, Input } from '@angular/core';
 import { ContactList } from '../models/contact-list.model';
 import { ContactService } from '../services/contact/contact.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-invit-attente',
@@ -17,7 +19,7 @@ export class InvitAttenteComponent implements OnInit {
   photoProfile!: any;
   user!: string
 
-  constructor(private contactService: ContactService,private http: HttpClient) { }
+  constructor(private contactService: ContactService,private http: HttpClient, private router : Router, private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.buttonText = 'Accepter';
@@ -29,6 +31,11 @@ export class InvitAttenteComponent implements OnInit {
 
   onAccept() {
     console.log('invitation acceptée')
+    this.contactService.accepterAmi(this.contactList.email).pipe(
+      tap(() => this.ngZone.run(() => this.router.navigateByUrl('/contact')) )
+    ).subscribe();
+    this.buttonText = 'Invitation acceptée';
+
   }
 
 }

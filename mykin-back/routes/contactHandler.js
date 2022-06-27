@@ -235,3 +235,133 @@ exports.getInvitAttente = async (req, res) => {
     res.json({ msg: "erreur de recherche liste invitations en attente" });
   }
 };
+
+
+exports.accepterAmi = async (req, res) => {
+    const userInvited = req.params.id;
+    const accepteur = req.params.param;
+    // console.log('userInvited',userInvited)
+    // console.log('inviteur',accepteur)
+    try {
+
+       const _Accepteur = await User.findOne(
+            {email: accepteur}, (err, user) => {
+                if(!err) {
+                    console.log('user accepteur trouvé ?', user)
+                    const _UserInvited = [userInvited];
+                    console.log('arrayUserInvited ?', _UserInvited)
+                    console.log('user accepteur  ?', accepteur)
+
+                    const invitAttenteAccepteur = user.invitEnAttente
+                    console.log('invitEnAttenteAccepteur ?', invitAttenteAccepteur)
+                    const listeinvitEnAttenteApresAccept = invitAttenteAccepteur.filter((obj) => _UserInvited.indexOf(obj)  === -1);
+                    console.log('liste invit en attente ACCEPTEUR nettoyée ??', listeinvitEnAttenteApresAccept);
+
+
+
+
+                    // vérif si le nouvel ami a été demandé de mon coté en ami
+                    let invitEnvoyee = user.invitEnvoyee;
+                    console.log("liste demande invit envoyée à clean car on accepte déjà nouvel ami", user.invitEnvoyee)
+                    const invitEnvoyeeApresAccept = invitEnvoyee.filter((obj) => _UserInvited.indexOf(obj) === -1)
+                    console.log('invit envoyee ACCEPTEUR nettoyée ? :', invitEnvoyeeApresAccept )
+
+
+                    let Amis = user.amis
+                    console.log("liste amis avant accept", Amis)
+                    Amis.push(userInvited);
+                    console.log("nouvelle liste Amis Accepteur", Amis)
+
+
+
+                    User.updateOne(
+                        {email: accepteur},
+                        {
+                            invitEnAttente: listeinvitEnAttenteApresAccept,
+                            invitEnvoyee: invitEnvoyeeApresAccept,
+                            amis: Amis,
+                        }, function (err, docs) {
+                            if(err) {
+                                console.log('erreur dans if updateOne acceptAmi', err)
+                            }
+                            else {
+                                console.log("liste amis mise à jour", docs)
+                            }
+                        }
+                    )
+                    res.json({
+                        msg: ` ${userInvited} : amis ajouté  à la liste d'amis de ${user.name}`
+                    })
+                }
+            }
+        );    
+
+    } catch {
+        console.log(' err catch acceptami ')
+    }
+}
+
+
+exports.acceptationAmi = async (req, res, next) => {
+    const userInvited = req.params.id;
+    const accepteur = req.params.param;
+    console.log('userInvited acceptation ami',userInvited)
+    console.log('inviteur acceptation ami',accepteur)
+
+    try {
+
+    const _Inviteur = await User.findOne(
+        {email: userInvited}, (err, user) => {
+            if(!err) {
+                console.log('user inviteur à clean :', user)
+                const invitEnvoyee = user.invitEnvoyee;
+                console.log(' invitEnvoyee de Zorro à clean :', invitEnvoyee)
+                const inviteurAClean = accepteur
+                console.log(' invit envoyee de zorro inviteur à clean :', inviteurAClean)
+                let invitEnvoyeeInviteurApresAccept = invitEnvoyee.filter((obj) => inviteurAClean.indexOf(obj) === -1);
+                console.log("invit envoyées zorro nettoyée :", invitEnvoyeeInviteurApresAccept)
+
+
+                // invit en attente à nettoyer
+                const invitEnAttente = user.invitEnAttente
+                console.log("liste invit en attente zorro à clean :", invitEnAttente)
+                console.log("inviteur à clean des invitEnAttente de zorro :", accepteur)
+                let invitEnAttenteApresAccept = invitEnAttente.filter((obj) => inviteurAClean.indexOf(obj) === -1);
+                console.log("invit en attente zorro apres accept :", invitEnAttenteApresAccept);
+
+
+                let Amis = user.amis;
+                console.log("liste amis avant accept :", Amis);
+                Amis.push(accepteur);
+                console.log("liste amis de zorro mise à jour :", Amis)
+
+
+
+                User.updateOne(
+                    {email: userInvited},
+                    {
+                        invitEnvoyee: invitEnvoyeeInviteurApresAccept,
+                        invitEnAttente: invitEnAttenteApresAccept,
+                        amis: Amis,
+                    }, function (err, docs) {
+                        if(err) {
+                            console.log('erreur dans if updateOne acceptAmi', err)
+                        }
+                        else {
+                            console.log("liste amis mise à jour", docs)
+                        }
+                    }
+                )
+                
+            }
+        }
+        )
+        
+    } catch {
+        console.log('catch acceptation ami')
+        
+    }
+    
+    next()
+
+}
