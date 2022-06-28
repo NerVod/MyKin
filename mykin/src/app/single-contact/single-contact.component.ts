@@ -27,6 +27,7 @@ export class SingleContactComponent implements OnInit {
     // this.buttonText = 'Inviter';
     // this.invited = this.contactList.invited;
     this.contactService.isinvited(this.contactList.email).subscribe(data => this.invited =(Object.entries(data)[0][1] ) );
+    // this.contactService.isinvited(this.contactList.email).subscribe(data => console.log('retour de isinvited singlecontactcompo ts',this.invited =(Object.entries(data)[0][1] ) ));
     this.buttonStatus()
     this.photoProfile = this.contactList.photoProfile;
     this.user = this.contactList.email;

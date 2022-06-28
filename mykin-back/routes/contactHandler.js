@@ -53,7 +53,7 @@ exports.contactslistData = async (req, res)=> {
             }
 
            for(ami of listeAmisAFiltrer){
-            console.log('ami ??? :', ami)
+            // console.log('ami ??? :', ami)
                     contactListe.filter(function(el) { if (el.email === ami) {contactListe.splice(el, 1)}} )
                     // console.log("contactListe filtrage §§§§§§§§", contactListe)
             }
@@ -204,10 +204,9 @@ exports.isinvited = async (req, res) => {
   try {
     const _inviteur = await User.findOne({ email: inviteur }, (err, user) => {
       if (!err) {
-        console.log(user);
         let invitations = user.invitEnvoyee;
         if(invitations.length == 0){
-            res.json({msg: "pas de demande en attente"})
+            res.json({msg: false})
             return
         }
 
@@ -224,14 +223,14 @@ exports.isinvited = async (req, res) => {
       }
     });
   } catch {
-    console.log("erreur de recherche d'invitation isinvited");
+    // console.log(`Pas de demande en attente pour ${userInvited}`);
+    return
   }
 };
 
 
 exports.getInvitAttente = async (req, res) => {
   const inviteur = req.params.id;
-  console.log('inviteur :', inviteur)
   const contactListe = [];
 
   try {
@@ -240,7 +239,6 @@ exports.getInvitAttente = async (req, res) => {
     User.findOne({ email: inviteur }, (err, user) => {
       if (!err) {
         let invitations = user.invitEnAttente;
-        // console.log('user.invitEnAttente', user.invitEnAttente)
             if(invitations.length == 0){
                 res.json({msg: "pas de demande en attente"})
                 return
@@ -259,7 +257,6 @@ exports.getInvitAttente = async (req, res) => {
             }
 
             if (invitations.length === contactListe.length) {
-                // console.log(' contactListe en attente :', contactListe)
               res.json(contactListe);
             }
 
@@ -280,39 +277,21 @@ exports.getInvitAttente = async (req, res) => {
 exports.accepterAmi = async (req, res) => {
     const userInvited = req.params.id;
     const accepteur = req.params.param;
-    // console.log('userInvited',userInvited)
-    // console.log('inviteur',accepteur)
+
     try {
 
        const _Accepteur = await User.findOne(
             {email: accepteur}, (err, user) => {
                 if(!err) {
-                    console.log('user accepteur trouvé ?', user)
                     const _UserInvited = [userInvited];
-                    console.log('arrayUserInvited ?', _UserInvited)
-                    console.log('user accepteur  ?', accepteur)
-
                     const invitAttenteAccepteur = user.invitEnAttente
-                    console.log('invitEnAttenteAccepteur ?', invitAttenteAccepteur)
                     const listeinvitEnAttenteApresAccept = invitAttenteAccepteur.filter((obj) => _UserInvited.indexOf(obj)  === -1);
-                    console.log('liste invit en attente ACCEPTEUR nettoyée ??', listeinvitEnAttenteApresAccept);
-
-
-
 
                     // vérif si le nouvel ami a été demandé de mon coté en ami
                     let invitEnvoyee = user.invitEnvoyee;
-                    console.log("liste demande invit envoyée à clean car on accepte déjà nouvel ami", user.invitEnvoyee)
                     const invitEnvoyeeApresAccept = invitEnvoyee.filter((obj) => _UserInvited.indexOf(obj) === -1)
-                    console.log('invit envoyee ACCEPTEUR nettoyée ? :', invitEnvoyeeApresAccept )
-
-
                     let Amis = user.amis
-                    console.log("liste amis avant accept", Amis)
                     Amis.push(userInvited);
-                    console.log("nouvelle liste Amis Accepteur", Amis)
-
-
 
                     User.updateOne(
                         {email: accepteur},
@@ -345,37 +324,24 @@ exports.accepterAmi = async (req, res) => {
 exports.acceptationAmi = async (req, res, next) => {
     const userInvited = req.params.id;
     const accepteur = req.params.param;
-    console.log('userInvited acceptation ami',userInvited)
-    console.log('inviteur acceptation ami',accepteur)
+    // console.log('userInvited acceptation ami',userInvited)
+    // console.log('inviteur acceptation ami',accepteur)
 
     try {
 
     const _Inviteur = await User.findOne(
         {email: userInvited}, (err, user) => {
             if(!err) {
-                console.log('user inviteur à clean :', user)
                 const invitEnvoyee = user.invitEnvoyee;
-                console.log(' invitEnvoyee de Zorro à clean :', invitEnvoyee)
                 const inviteurAClean = accepteur
-                console.log(' invit envoyee de zorro inviteur à clean :', inviteurAClean)
                 let invitEnvoyeeInviteurApresAccept = invitEnvoyee.filter((obj) => inviteurAClean.indexOf(obj) === -1);
-                console.log("invit envoyées zorro nettoyée :", invitEnvoyeeInviteurApresAccept)
-
 
                 // invit en attente à nettoyer
                 const invitEnAttente = user.invitEnAttente
-                console.log("liste invit en attente zorro à clean :", invitEnAttente)
-                console.log("inviteur à clean des invitEnAttente de zorro :", accepteur)
+
                 let invitEnAttenteApresAccept = invitEnAttente.filter((obj) => inviteurAClean.indexOf(obj) === -1);
-                console.log("invit en attente zorro apres accept :", invitEnAttenteApresAccept);
-
-
                 let Amis = user.amis;
-                console.log("liste amis avant accept :", Amis);
                 Amis.push(accepteur);
-                console.log("liste amis de zorro mise à jour :", Amis)
-
-
 
                 User.updateOne(
                     {email: userInvited},
@@ -400,8 +366,37 @@ exports.acceptationAmi = async (req, res, next) => {
     } catch {
         console.log('catch acceptation ami')
         
-    }
-    
+    }   
     next()
+}
 
+
+exports.hasPendingInvit = async(req, res) => {
+    const inviteur = req.params.id;
+    const contactListe = [];
+  
+    try {
+      const _contactListe = await User.find();
+  
+      User.findOne({ email: inviteur }, (err, user) => {
+        if (!err) {
+          let invitations = user.invitEnAttente;
+              if(invitations.length === 0){
+                  res.json({invitEnAttente: false})
+                  return
+              } else(
+                res.json({
+                    invitEnAttente: true
+                })
+              )
+
+        } else {
+          res.json({msg: 'pas de user trouvé'})
+          return
+        }
+      });
+    } catch {
+      console.log("une erreur s'est produite");
+      res.json({ msg: "erreur de recherche has pending invites" });
+    }
 }

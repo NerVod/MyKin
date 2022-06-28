@@ -20,6 +20,7 @@ router.get("/contactslist/:id", auth, contactHandler.contactslistData );
 router.get("/invitecontact/:id/:param", auth,  contactHandler.invitationContact );
 router.get("/updatedemandeenvoyee/:id/:param", auth, contactHandler.updatedemandeenvoyee)
 router.get("/isinvited/:id/:param", auth, contactHandler.isinvited)
+router.get("/pendinginvit/:id", auth, contactHandler.hasPendingInvit)
 router.get("/getinvitattente/:id",  contactHandler.getInvitAttente)
 router.get("/accepterami/:id/:param", auth,  contactHandler.acceptationAmi,  contactHandler.accepterAmi,)
 

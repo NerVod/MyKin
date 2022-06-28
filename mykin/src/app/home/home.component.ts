@@ -31,7 +31,7 @@ _PhotoProfile$! : Observable<any>;
 
     this._Nom$= this.getName();
     this._Prenom$= this.getPrenom();
-    this._Email$ = this.getEmail()
+    this._Email$ = this.getEmail();
     // console.log('user homecomponent.ts :', this._User['user'])
   }
 

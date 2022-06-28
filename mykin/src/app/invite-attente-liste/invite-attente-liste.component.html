@@ -1,5 +1,10 @@
-<p>invite-attente-liste DATA FROM SERVER works!</p>
-<app-invit-attente *ngFor="let singleContact of contactList$ | async"[contactList]="singleContact"></app-invit-attente>
+<div *ngIf="hasInvitation$">
+    <p>Vous êtes invité par de nouveaux contacts</p>
+    <app-invit-attente *ngFor="let singleContact of contactList$ | async"[contactList]="singleContact"></app-invit-attente>
+</div>
+<div *ngIf="!hasInvitation$">
+    <p>Vous n'avez pas d'invitation en attente</p>
+</div>
 
 <!-- <p>invite-attente-liste DATA EN DUR works!</p>
 <app-invit-attente *ngFor="let singleContact of contactList"[contactList]="singleContact"></app-invit-attente> -->

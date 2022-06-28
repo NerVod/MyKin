@@ -111,6 +111,11 @@ export class ContactService {
 
   }
 
+  hasPendingInvites(){
+    const inviteur = localStorage['user']
+    return this.http.get(`${environment.baseURL}user/pendinginvit/${inviteur}`)
+  }
+
 
 }
 
