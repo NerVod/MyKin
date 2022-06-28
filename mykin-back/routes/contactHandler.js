@@ -4,7 +4,7 @@ exports.contactslistData = async (req, res)=> {
     // console.log("reqparam contactlistdata contacthandler :", req.query.name)
     let contactListe = []
     let listeUserActifFiltré = []
-    const activeUser = req.params.id;
+    const activeUser = req.body.user;
     try {
         const _contactListe = await User.find();
         if(!User){
@@ -77,16 +77,16 @@ exports.contactslistData = async (req, res)=> {
 
 exports.invitationContact = async ( req, res) => {
 
-    // console.log("requete invitationContact", req.params)
-    const userInvited = req.params.id;
-    const inviteur = req.params.param
+    // console.log("requete invitationContact", req.body)
+    const userInvited = req.body.contactMail;
+    const inviteur = req.body.inviteur
     // console.log("mail requete back :", userInvited)
     // console.log("mail requete back Inviteur :", inviteur)
     const userUpdated = [];
 
     try {
         const _userInvited = await User.findOne(
-            {email : req.params.id},
+            {email : userInvited},
             (err, user) => {
             if(!err){
 
@@ -127,27 +127,29 @@ exports.invitationContact = async ( req, res) => {
                     msg: `invitation envoyée à ${user.name}`
                 })
             }else {
-                console.log(err)
+                console.log(err);
+                res.json({err: err})
             }
         })
     } catch {
         console.log("pas de user trouvé")
+
     }
 
 }
 
 exports.updatedemandeenvoyee = async ( req, res) => {
 
-    // console.log("requete updatedemandeenvoyee", req.params)
-    const userInvited = req.params.id;
-    const inviteur = req.params.param
+    // console.log("requete updatedemandeenvoyee", req.body)
+    const userInvited = req.body.contactMail;
+    const inviteur = req.body.inviteur
     // console.log("update liste demande envoyee userInvited :", userInvited)
     // console.log("update liste demande envoyee Inviteur :", inviteur)
     // const userUpdated = [];
 
     try {
         const _inviteur = await User.findOne(
-            {email : req.params.param},
+            {email : inviteur},
             (err, user) => {
             if(!err){
 
@@ -198,8 +200,8 @@ exports.updatedemandeenvoyee = async ( req, res) => {
 }
 
 exports.isinvited = async (req, res) => {
-  const userInvited = req.params.id;
-  const inviteur = req.params.param;
+  const userInvited = req.body.contactMail;
+  const inviteur = req.body.inviteur;
 
   try {
     const _inviteur = await User.findOne({ email: inviteur }, (err, user) => {
@@ -220,6 +222,7 @@ exports.isinvited = async (req, res) => {
         return;
       } else {
         console.log(" err dans le else", err);
+        res.json({isInvited: false})
       }
     });
   } catch {
@@ -230,7 +233,7 @@ exports.isinvited = async (req, res) => {
 
 
 exports.getInvitAttente = async (req, res) => {
-  const inviteur = req.params.id;
+  const inviteur = req.body.inviteur;
   const contactListe = [];
 
   try {
@@ -269,14 +272,14 @@ exports.getInvitAttente = async (req, res) => {
     });
   } catch {
     console.log("une erreur s'est produite");
-    res.json({ msg: "erreur de recherche liste invitations en attente" });
+    res.json({ msg: false });
   }
 };
 
 
 exports.accepterAmi = async (req, res) => {
-    const userInvited = req.params.id;
-    const accepteur = req.params.param;
+    const userInvited = req.body.contactMail;
+    const accepteur = req.body.accepteur;
 
     try {
 
@@ -322,8 +325,8 @@ exports.accepterAmi = async (req, res) => {
 
 
 exports.acceptationAmi = async (req, res, next) => {
-    const userInvited = req.params.id;
-    const accepteur = req.params.param;
+    const userInvited = req.body.contactMail;
+    const accepteur = req.body.accepteur;
     // console.log('userInvited acceptation ami',userInvited)
     // console.log('inviteur acceptation ami',accepteur)
 
@@ -372,7 +375,7 @@ exports.acceptationAmi = async (req, res, next) => {
 
 
 exports.hasPendingInvit = async(req, res) => {
-    const inviteur = req.params.id;
+    const inviteur = req.body.inviteur;
 
     try {
       const _contactListe = await User.find();
@@ -401,7 +404,7 @@ exports.hasPendingInvit = async(req, res) => {
 }
 
 exports.getAllFriends = async(req, res) => {
-    const activeUser = req.params.id;
+    const activeUser = req.body.inviteur;
     const friendListe = []
 
     try {
@@ -448,3 +451,83 @@ exports.getAllFriends = async(req, res) => {
 
 
 }
+
+exports.deleteFriend = async (req, res) => {
+    const userDeleted = req.body.deletedUser
+    const activeUser = req.body.user
+    console.log("userDeleted :",userDeleted)
+    console.log("activeUser :",activeUser)
+    const friendList = [];
+    const friendListbis= [];
+
+    try {
+        const supprimeur = await User.findOne(
+            {email: activeUser},
+            (err, user) => {
+                if(!err) {
+                    let listeAmis = user.amis;
+                    console.log("liste d'amis avant delete :", listeAmis)
+
+                    for (ami of listeAmis){
+                        if(ami !== userDeleted){
+                            console.log("ami??? ", ami)
+                            console.log("userDeleted??? ", userDeleted)
+                            friendList.push(ami)
+                        }
+                    }
+                    console.log("liste d'amis nettoyée :", friendList);
+
+                    User.updateOne(
+                        {email :activeUser},
+                        {amis: friendList},
+                        function (err, docs){
+                            if(err){
+                                console.log('err dans if de updateOne :',err)
+                            }
+                            else{
+                                console.log("user mis à jour", docs)
+                            }
+                        }
+                    );
+
+
+                    User.findOne(
+                        {email: userDeleted},
+                        (err, user) => {
+                            if(!err) {
+                                let listeAmis2 = user.amis;
+                                console.log("liste amis2 du user deleted avant supression :", listeAmis2)
+                                for(ami of listeAmis2){
+                                    if(ami !== activeUser){
+                                        console.log("ami!!! ", ami)
+                                        console.log("userDeleted!!! ", userDeleted)
+                                        friendListbis.push(ami)
+                                    }
+                                }
+                                console.log("friend liste bis du user deleted nettoyée", friendListbis)
+                                User.updateOne(
+                                    {email :userDeleted},
+                                    {amis: friendList},
+                                    function (err, docs){
+                                        if(err){
+                                            console.log('err dans if de updateOne :',err)
+                                        }
+                                        else{
+                                            console.log("user mis à jour", docs)
+                                        }
+                                    }
+                                );
+                            } else {
+                                console.log("err mise à jour deleted user")
+                            }
+                        }
+                    )
+                        res.json({msg: "listes d'amis mises à jour"})
+                }
+            }
+        )
+    } catch {
+        console.log("erreur de mise à jour liste amis apres delete")
+    }
+
+} 

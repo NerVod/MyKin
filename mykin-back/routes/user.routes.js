@@ -10,20 +10,22 @@ const contactHandler= require("./contactHandler")
 
 router.post("/register", userHandler.registerNewUser);
 router.post("/login", userHandler.loginUser);
+router.post("/deletefriend",contactHandler.deleteFriend);
+router.post("/contactslist", contactHandler.contactslistData );
+router.post("/invitecontact", contactHandler.invitationContact );
+router.post("/updatedemandeenvoyee", contactHandler.updatedemandeenvoyee)
+router.post("/isinvited", contactHandler.isinvited)
+router.post("/getinvitattente",  contactHandler.getInvitAttente)
+router.post("/accepterami", contactHandler.acceptationAmi,  contactHandler.accepterAmi,)
+router.post("/pendinginvit", contactHandler.hasPendingInvit)
+router.post("/getallfriends", contactHandler.getAllFriends)
 
 
 // router.get("/photoprofile/:id", userHandler.photoprofile )
 router.get("/logged", auth, userHandler.dataProtegee);
 router.get("/contact", auth, userHandler.dataProtegee);
 router.get("/user", auth, userHandler.userData);
-router.get("/contactslist/:id", auth, contactHandler.contactslistData );
-router.get("/invitecontact/:id/:param", auth,  contactHandler.invitationContact );
-router.get("/updatedemandeenvoyee/:id/:param", auth, contactHandler.updatedemandeenvoyee)
-router.get("/isinvited/:id/:param", auth, contactHandler.isinvited)
-router.get("/pendinginvit/:id", auth, contactHandler.hasPendingInvit)
-router.get("/getinvitattente/:id",  contactHandler.getInvitAttente)
-router.get("/accepterami/:id/:param", auth,  contactHandler.acceptationAmi,  contactHandler.accepterAmi,)
-router.get("/getallfriends/:id",   contactHandler.getAllFriends)
+
 
 
 module.exports = router;

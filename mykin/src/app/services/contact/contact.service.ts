@@ -63,9 +63,8 @@ export class ContactService {
     ];
     
   getAllContacts(): Observable<ContactList[]> {
-    const user = localStorage['user']
-    // console.log('user reçu au front :', this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist/?name=${user}`))
-    return this.http.get<ContactList[]>(`${environment.baseURL}user/contactslist/${user}`)
+    const user = {user :localStorage['user']};
+    return this.http.post<ContactList[]>(`${environment.baseURL}user/contactslist/`, user)
   }
 
   getPhotoProfile(account: string) {
@@ -81,46 +80,46 @@ export class ContactService {
   }
 
   inviteContact(contactMail: string): Observable<ContactList[]>{
-    const inviteur = localStorage['user']
-    // console.log("Envoi invitation à :", contactMail)
-    // console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
-    return this.http.get<ContactList[]>(`${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
+    const donnees = { contactMail: contactMail, inviteur: localStorage['user']}
+    return this.http.post<ContactList[]>(`${environment.baseURL}user/invitecontact`, donnees)
   }
 
   updateListeDemandeEnvoyee(contactMail: string): Observable<ContactList[]>{
-    const inviteur = localStorage['user']
-    // console.log("Envoi invitation à :", contactMail)
-    // console.log("URL envoi :", `${environment.baseURL}user/invitecontact/${contactMail}/${inviteur}`)
-    return this.http.get<ContactList[]>(`${environment.baseURL}user/updatedemandeenvoyee/${contactMail}/${inviteur}`)
+    const donnees = { contactMail: contactMail, inviteur: localStorage['user']}
+    return this.http.post<ContactList[]>(`${environment.baseURL}user/updatedemandeenvoyee`, donnees)
   }
 
   isinvited(contactMail: string){
-    const inviteur = localStorage['user']   
-    return this.http.get(`${environment.baseURL}user/isinvited/${contactMail}/${inviteur}`)
+    const donnees = { contactMail: contactMail, inviteur : localStorage['user']}  
+    return this.http.post(`${environment.baseURL}user/isinvited`, donnees)
   }
 
   getInvitEnAttente(){
-    const inviteur = localStorage['user'];
-    // console.log("URL envoi :",`${environment.baseURL}user/getinvitattente/${inviteur}`)
-    return this.http.get<ContactList[]>(`${environment.baseURL}user/getinvitattente/${inviteur}`)
+    const donnees = { inviteur : localStorage['user']};
+    return this.http.post<ContactList[]>(`${environment.baseURL}user/getinvitattente`, donnees)
   }
   
   accepterAmi(contactMail: string){
-    const inviteur = localStorage['user'];
-    return this.http.get<ContactList[]>(`${environment.baseURL}user/accepterami/${contactMail}/${inviteur}`)
+    const donnees = {contactMail: contactMail, accepteur: localStorage['user']};
+    return this.http.post<ContactList[]>(`${environment.baseURL}user/accepterami`, donnees)
 
   }
 
   hasPendingInvites(){
-    const inviteur = localStorage['user']
-    return this.http.get(`${environment.baseURL}user/pendinginvit/${inviteur}`)
+    const donnees = { inviteur: localStorage['user']}
+    return this.http.post(`${environment.baseURL}user/pendinginvit`, donnees)
   }
 
   getAllFriends(): Observable<ContactList[]> {
-    const inviteur = localStorage['user'];
-    return this.http.get<ContactList[]>(`${environment.baseURL}user/getallfriends/${inviteur}`)
+    const donnees = { inviteur: localStorage['user']};
+    return this.http.post<ContactList[]>(`${environment.baseURL}user/getallfriends`, donnees)
   }
-
+  
+  deleteFriend(contactMail: string){
+    console.log(`supression de ${contactMail}`)
+    const donnees = {user: localStorage['user'], deletedUser: contactMail}
+    return this.http.post(`${environment.baseURL}user/deletefriend/`, donnees).subscribe()
+  }
 
 
 }

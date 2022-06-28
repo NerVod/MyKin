@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,NgZone, Input, OnInit } from '@angular/core';
 import { ContactList } from '../models/contact-list.model';
 import { ContactService } from '../services/contact/contact.service';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-friend-card',
@@ -18,7 +20,7 @@ export class FriendCardComponent implements OnInit {
   user!: string;
   survol!: boolean;
 
-  constructor(private contactService: ContactService,private http: HttpClient) { }
+  constructor(private contactService: ContactService,private http: HttpClient,private router : Router, private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.user = this.contactList.email;
@@ -32,6 +34,16 @@ export class FriendCardComponent implements OnInit {
 
   onSendMessage(): void {
     console.log(`Envoyer un message`)
+  }
+
+  deleteFriend():void {
+    if(confirm(`Voulez-vous vraiment supprimer ${this.contactList.prenom} ${this.contactList.name} de votre liste d'amis ?` )) {
+      if(confirm(`Cette opération est irréversible, vous devrez de nouveau faire une demande d'ami à ${this.contactList.prenom} ${this.contactList.name}, voulez-vous confirmer ce choix ?`)){
+        console.log(` friendCard component TS supression du copain ${this.contactList.prenom} ${this.contactList.name}`);
+        this.contactService.deleteFriend(this.contactList.email)
+
+      }
+    }
   }
 
 }

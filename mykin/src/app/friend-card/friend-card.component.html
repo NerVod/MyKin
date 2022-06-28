@@ -3,7 +3,7 @@
     <!-- <h2 class="profileName">Nom de l'utilisateur</h2> -->
     <div class="entete">
         <h2  class="profileName">{{ contactList.prenom }} {{ contactList.name }}</h2>
-        <img (mouseover)="this.survol=true" (mouseout)="this.survol=false" [ngClass]="{survol: survol}" class="deleteIcone" src="../../assets/logo/delete-user.png">
+        <img (mouseover)="this.survol=true" (mouseout)="this.survol=false" [ngClass]="{survol: survol}" (click)="deleteFriend()" class="deleteIcone" src="../../assets/logo/delete-user.png">
     </div>
     <div class="photoButton">
         <div class="containerPhoto" *ngIf="!contactList.photoProfile">

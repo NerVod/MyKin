@@ -20,8 +20,7 @@ export class InviteAttenteListeComponent implements OnInit {
     this.contactList = this.contactService.getAllContactsHard()
     this.contactList$ = this.contactService.getInvitEnAttente()
     this.contactService.hasPendingInvites().subscribe(data => this.hasInvitation$ =(Object.entries(data)[0][1] ) );
-    // this.contactService.hasPendingInvites().subscribe(data => console.log('hasInvitations', this.hasInvitation$ =(Object.entries(data)[0][1] )) );
-    
+   
 
   }
 
