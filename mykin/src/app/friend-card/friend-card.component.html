@@ -1,0 +1,21 @@
+<!-- <p>friend-card works!</p> -->
+<div class="contact-card">
+    <!-- <h2 class="profileName">Nom de l'utilisateur</h2> -->
+    <div>
+        <h2  class="profileName">{{ contactList.prenom }} {{ contactList.name }}</h2>
+    </div>
+    <div class="photoButton">
+        <div class="containerPhoto" *ngIf="!contactList.photoProfile">
+            <img class="photoProfile photo" src="../../assets/images/profil-vide.png" alt="logo profile vide"/>
+        </div>
+        <!-- placeholder pour si image de profile -->
+        <div class="containerPhoto" *ngIf="contactList.photoProfile">
+            <img class="photoProfile" [src]="contactList.photoProfile" alt=" photo profile"/>
+        </div>
+        <div class="buttonContainer">
+            <button (click)="onSeeProfile()">Voir le Profil</button>
+            <button (click)="onSendMessage()">Envoyer un Message</button>
+        </div>
+        
+    </div>
+</div>

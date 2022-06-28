@@ -23,6 +23,7 @@ router.get("/isinvited/:id/:param", auth, contactHandler.isinvited)
 router.get("/pendinginvit/:id", auth, contactHandler.hasPendingInvit)
 router.get("/getinvitattente/:id",  contactHandler.getInvitAttente)
 router.get("/accepterami/:id/:param", auth,  contactHandler.acceptationAmi,  contactHandler.accepterAmi,)
+router.get("/getallfriends/:id",   contactHandler.getAllFriends)
 
 
 module.exports = router;

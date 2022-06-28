@@ -116,6 +116,12 @@ export class ContactService {
     return this.http.get(`${environment.baseURL}user/pendinginvit/${inviteur}`)
   }
 
+  getAllFriends(): Observable<ContactList[]> {
+    const inviteur = localStorage['user'];
+    return this.http.get<ContactList[]>(`${environment.baseURL}user/getallfriends/${inviteur}`)
+  }
+
+
 
 }
 

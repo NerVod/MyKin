@@ -373,8 +373,7 @@ exports.acceptationAmi = async (req, res, next) => {
 
 exports.hasPendingInvit = async(req, res) => {
     const inviteur = req.params.id;
-    const contactListe = [];
-  
+
     try {
       const _contactListe = await User.find();
   
@@ -399,4 +398,53 @@ exports.hasPendingInvit = async(req, res) => {
       console.log("une erreur s'est produite");
       res.json({ msg: "erreur de recherche has pending invites" });
     }
+}
+
+exports.getAllFriends = async(req, res) => {
+    const activeUser = req.params.id;
+    const friendListe = []
+
+    try {
+
+        User.findOne(
+            {email: activeUser}, (err, user) => {
+                if(!err) {
+                    let listeAmis = user.amis;
+                    // console.log("liste d'amis :", listeAmis );
+                    if(listeAmis.length === 0){
+                        console.log("pas d'ami dans la liste");
+                        res.json({msg: false})
+                    }
+
+                    for(ami of listeAmis) {
+                        User.findOne({ email: ami}, (err, contact) => {
+                            if(!err) {
+                                let friend = {
+                                    name: contact.name,
+                                    prenom: contact.prenom,
+                                    photoProfile: contact.photoProfile,
+                                    invited: contact.invited,
+                                    email: contact.email,
+                                }
+                                friendListe.push(friend)
+
+                                if(listeAmis.length === friendListe.length) {
+                                    res.json(friendListe)
+                                }
+                            }
+                        })
+                    }
+                } else {
+                    res.json({listeAmis: false})
+                }
+            }
+        )
+
+
+    }catch{
+        console.log('erreur catch getAllFriends')
+        res.json({msg: "erreur recherche liste d'amis"})
+    }
+
+
 }

@@ -1,4 +1,6 @@
-<p>Naviguer tous les profils</p>
+<div class="title">
+    <h3>Naviguer tous les profils</h3>
+</div>
 <app-single-contact *ngFor="let singleContact of contactList$ | async"[contactList] = "singleContact"></app-single-contact>
 <!-- <p>contact-list HARDCODED works!</p>
 <app-single-contact *ngFor="let singleContact of contactList"[contactList] = "singleContact"></app-single-contact> -->
