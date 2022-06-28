@@ -28,7 +28,7 @@ const userSchema = new Schema(
       required: true,
     },
     photoProfile: {
-      type: Buffer,
+      type: String,
       required: false
     },
     invited: {

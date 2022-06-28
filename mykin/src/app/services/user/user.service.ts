@@ -22,6 +22,9 @@ export class UserService {
   getUserData() {
     return this.http.get(`${environment.baseURL}user/user`)
   }
+  getUserPhoto() {
+    return this.http.get(`${environment.baseURL}user/user`)
+  }
 
 
   constructor(private http: HttpClient) { }

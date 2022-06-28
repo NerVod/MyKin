@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
 
 _Nom$!:Observable<any>;
 _Prenom$!:Observable<any>;
-_Email$! : Observable<any>;
-_PhotoProfile$! : Observable<any>;
+_Email$!: Observable<any>;
+_PhotoProfile$!: Observable<any>;
 
 
   getProtectedData() {
@@ -26,14 +26,14 @@ _PhotoProfile$! : Observable<any>;
   }
 
   ngOnInit(): void {
-    // this.getProtectedData()
-    // this._User$ = this.userService.getUserData().subscribe((data: any) => console.log('data du user :', data.user))
 
     this._Nom$= this.getName();
     this._Prenom$= this.getPrenom();
     this._Email$ = this.getEmail();
-    // console.log('user homecomponent.ts :', this._User['user'])
+    // this._PhotoProfile$ = this.getPhoto();
+
   }
+
 
   getName() {
     this._Nom$ = this.userService.getUserData().pipe(
@@ -43,6 +43,7 @@ _PhotoProfile$! : Observable<any>;
       )
       return this._Nom$
   }
+
   getPrenom() {
     this._Prenom$ = this.userService.getUserData().pipe(
       map(value => value = Object.entries(value)),
@@ -50,6 +51,7 @@ _PhotoProfile$! : Observable<any>;
       )
       return this._Prenom$
   }
+
   getEmail() {
     this._Email$ = this.userService.getUserData().pipe(
       map(value => value = Object.entries(value)),
@@ -57,12 +59,16 @@ _PhotoProfile$! : Observable<any>;
       )
       return this._Email$
   }
+
   getPhoto() {
-    this._PhotoProfile$ = this.userService.getUserData().pipe(
+    this._PhotoProfile$  = this.userService.getUserPhoto().pipe(
+      tap(value => console.log('value getName',value)),
       map(value => value = Object.entries(value)),
       map(value => value = value[0][1]['photoProfile']),
       )
-      return this._PhotoProfile$
+      return this._PhotoProfile$ 
   }
+
+ 
 
 }

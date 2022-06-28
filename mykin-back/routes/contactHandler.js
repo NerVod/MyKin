@@ -57,11 +57,7 @@ exports.contactslistData = async (req, res)=> {
                     contactListe.filter(function(el) { if (el.email === ami) {contactListe.splice(el, 1)}} )
                     // console.log("contactListe filtrage §§§§§§§§", contactListe)
             }
-        
-
             // console.log('contactliste sans userActif ni ami ?????? :', contactListe)
-
-
 
             res.json(contactListe)
 
@@ -145,7 +141,6 @@ exports.updatedemandeenvoyee = async ( req, res) => {
     const inviteur = req.body.inviteur
     // console.log("update liste demande envoyee userInvited :", userInvited)
     // console.log("update liste demande envoyee Inviteur :", inviteur)
-    // const userUpdated = [];
 
     try {
         const _inviteur = await User.findOne(
