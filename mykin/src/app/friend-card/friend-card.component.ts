@@ -15,7 +15,8 @@ export class FriendCardComponent implements OnInit {
   buttonText!: string;
   // invited!: any;
   photoProfile!: any;
-  user!: string
+  user!: string;
+  survol!: boolean;
 
   constructor(private contactService: ContactService,private http: HttpClient) { }
 

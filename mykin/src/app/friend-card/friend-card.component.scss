@@ -57,3 +57,22 @@ align-content: center;
 justify-content: space-between;
 
 }
+
+.deleteIcone{
+    height: 35px;
+    width: 35px;
+    margin-top: 3px;
+    margin-right: 3px;
+    
+    
+}
+
+.entete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.survol {
+    cursor:pointer;
+    border: 1px solid red
+}
