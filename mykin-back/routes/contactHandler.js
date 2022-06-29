@@ -465,16 +465,16 @@ exports.deleteFriend = async (req, res) => {
             (err, user) => {
                 if(!err) {
                     let listeAmis = user.amis;
-                    console.log("liste d'amis avant delete :", listeAmis)
+                    // console.log("liste d'amis avant delete :", listeAmis)
 
                     for (ami of listeAmis){
                         if(ami !== userDeleted){
-                            console.log("ami??? ", ami)
-                            console.log("userDeleted??? ", userDeleted)
+                            // console.log("ami??? ", ami)
+                            // console.log("userDeleted??? ", userDeleted)
                             friendList.push(ami)
                         }
                     }
-                    console.log("liste d'amis nettoyée :", friendList);
+                    // console.log("liste d'amis nettoyée :", friendList);
 
                     User.updateOne(
                         {email :activeUser},
@@ -495,15 +495,15 @@ exports.deleteFriend = async (req, res) => {
                         (err, user) => {
                             if(!err) {
                                 let listeAmis2 = user.amis;
-                                console.log("liste amis2 du user deleted avant supression :", listeAmis2)
+                                // console.log("liste amis2 du user deleted avant supression :", listeAmis2)
                                 for(ami of listeAmis2){
                                     if(ami !== activeUser){
-                                        console.log("ami!!! ", ami)
-                                        console.log("userDeleted!!! ", userDeleted)
+                                        // console.log("ami!!! ", ami)
+                                        // console.log("userDeleted!!! ", userDeleted)
                                         friendListbis.push(ami)
                                     }
                                 }
-                                console.log("friend liste bis du user deleted nettoyée", friendListbis)
+                                // console.log("friend liste bis du user deleted nettoyée", friendListbis)
                                 User.updateOne(
                                     {email :userDeleted},
                                     {amis: friendList},
