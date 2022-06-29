@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WallPost } from '../models/wall-post.model';
+import { WallPostsService } from '../services/wall-posts.service';
 
 @Component({
   selector: 'app-wall-post',
@@ -13,7 +14,7 @@ export class WallPostComponent implements OnInit {
   buttonText!: string;
   likeState!: number;
 
-  constructor() { }
+  constructor(private wallPostService: WallPostsService) { }
 
   ngOnInit(): void {
     this.buttonText= 'I Like That';
@@ -22,14 +23,13 @@ export class WallPostComponent implements OnInit {
 
   onLike(){
     if( this.likeState === 1 ){
-          this.buttonText= "Oups, Je ne suis pas fan ...";
-          this.wallPost.likes++;
+    this.wallPostService.likeWallPostById(this.wallPost.id, 'like')
           this.likeState = 2;
 
     } else {
           this.buttonText = "I Like That !";
           this.likeState = 1;
-          this.wallPost.likes--
+          this.wallPostService.likeWallPostById(this.wallPost.id, 'unlike')
     };
   }
 

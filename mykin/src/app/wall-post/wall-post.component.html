@@ -1,6 +1,6 @@
 <div class ="wall-post-card" [ngClass]="{liked: this.likeState === 2}"  >
     <h2>{{ wallPost.title| titlecase}}</h2>
-    <a routerLink="/wallpost">Back</a>
+    <!-- <a routerLink="/wallpost">Back</a> -->
     <p>Publié {{ wallPost.createdDate | date:'le d MMMM YYYY à HH:mm' }}</p>
     <img [src] = "wallPost.imageUrl" [alt]="wallPost.title">
     <p>{{wallPost.description }}</p>

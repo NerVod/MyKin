@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const userHandler = require("./userHandler");
 const auth = require("../middleware/auth");
-const contactHandler= require("./contactHandler")
-
+const contactHandler= require("./contactHandler");
+const wallpostHandler = require('./wallpostHandler');
 
 
 
@@ -13,12 +13,13 @@ router.post("/login", userHandler.loginUser);
 router.post("/deletefriend",contactHandler.deleteFriend);
 router.post("/contactslist", contactHandler.contactslistData );
 router.post("/invitecontact", contactHandler.invitationContact );
-router.post("/updatedemandeenvoyee", contactHandler.updatedemandeenvoyee)
-router.post("/isinvited", contactHandler.isinvited)
-router.post("/getinvitattente",  contactHandler.getInvitAttente)
-router.post("/accepterami", contactHandler.acceptationAmi,  contactHandler.accepterAmi,)
-router.post("/pendinginvit", contactHandler.hasPendingInvit)
-router.post("/getallfriends", contactHandler.getAllFriends)
+router.post("/updatedemandeenvoyee", contactHandler.updatedemandeenvoyee);
+router.post("/isinvited", contactHandler.isinvited);
+router.post("/getinvitattente",  contactHandler.getInvitAttente);
+router.post("/accepterami", contactHandler.acceptationAmi,  contactHandler.accepterAmi);
+router.post("/pendinginvit", contactHandler.hasPendingInvit);
+router.post("/getallfriends", contactHandler.getAllFriends);
+router.post("/createpost", wallpostHandler.createNewPost)
 
 
 // router.get("/photoprofile/:id", userHandler.photoprofile )

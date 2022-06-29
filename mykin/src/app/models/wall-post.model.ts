@@ -6,4 +6,5 @@ export class WallPost {
     imageUrl!: string;
     location?: string ;
     author?: string;
+    id!:number;
 }

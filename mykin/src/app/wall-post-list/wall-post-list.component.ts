@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { WallPost } from '../models/wall-post.model';
 import { WallPostsService } from '../services/wall-posts.service';
 
@@ -9,13 +10,14 @@ import { WallPostsService } from '../services/wall-posts.service';
 })
 export class WallPostListComponent implements OnInit {
 
-  wallPosts! : WallPost[]
+  wallPosts! : WallPost[];
+  wallPosts$! : Observable<WallPost[]>;
 
   constructor(private wallPostService: WallPostsService) { }
 
   ngOnInit(): void {
     this.wallPosts = this.wallPostService.getAllWallPosts();
-
+// this.wallPosts$ = this.wallPostService.getAllWallPosts()
   }
 
 }
