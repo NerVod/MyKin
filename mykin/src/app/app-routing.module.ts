@@ -5,6 +5,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/auth.guard';
 import { ContactComponent } from './contact/contact.component';
+import { WallPostNewComponent } from './wall-post-new/wall-post-new.component';
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo: "login"},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "login", component: LogInComponent},
   {path: "contact", component: ContactComponent},
+  {path: "createpost", component: WallPostNewComponent}
 
   
 ];

@@ -4,5 +4,6 @@ export class WallPost {
     createdDate!: Date;
     likes!: number;
     imageUrl!: string;
-    location?: string 
+    location?: string ;
+    author?: string;
 }

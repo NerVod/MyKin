@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user/user.service';
 import { map,tap,  Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { map,tap,  Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
 _Nom$!:Observable<any>;
 _Prenom$!:Observable<any>;
@@ -69,6 +70,9 @@ _PhotoProfile$!: Observable<any>;
       return this._PhotoProfile$ 
   }
 
+  onAddNewPost(): void {
+    this.router.navigateByUrl('/createpost')
+  }
  
 
 }
