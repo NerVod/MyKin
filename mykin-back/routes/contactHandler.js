@@ -1,7 +1,7 @@
 const User = require('../model/User');
 
 exports.contactslistData = async (req, res)=> {
-    console.log("reqparam contactlistdata contacthandler :", req.body.user)
+    // console.log("reqparam contactlistdata contacthandler :", req.body.user)
     let contactListe = []
     let listeUserActifFiltré = []
     const activeUser = req.body.user;
@@ -36,7 +36,7 @@ exports.contactslistData = async (req, res)=> {
             // console.log("active account :", activeAccount)
 
             const listeAmisAFiltrer = activeAccount[0].amis;
-            console.log("liste amis a enlever :", listeAmisAFiltrer)
+            // console.log("liste amis a enlever :", listeAmisAFiltrer)
 
 
 
@@ -51,13 +51,13 @@ exports.contactslistData = async (req, res)=> {
                     // console.log('contactListe en remplissage :', contactListe)
                 } 
             }
-            console.log('contactListe en remplie sans le userActif :', contactListe)
+            // console.log('contactListe en remplie sans le userActif :', contactListe)
 
 
            for(ami of listeAmisAFiltrer){
-            console.log('ami ??? :', ami)
+            // console.log('ami ??? :', ami)
                    contactListe = contactListe.filter(element => element.email !== ami)
-                    console.log("contactListe filtrage §§§§§§§§", contactListe)
+                    // console.log("contactListe filtrage §§§§§§§§", contactListe)
             }
             // console.log('contactliste sans userActif ni ami ?????? :', contactListe)
         
