@@ -1,7 +1,7 @@
 const User = require('../model/User');
 
 exports.contactslistData = async (req, res)=> {
-    // console.log("reqparam contactlistdata contacthandler :", req.query.name)
+    console.log("reqparam contactlistdata contacthandler :", req.body.user)
     let contactListe = []
     let listeUserActifFiltré = []
     const activeUser = req.body.user;
@@ -14,7 +14,7 @@ exports.contactslistData = async (req, res)=> {
             })
         } else {
 
-            // console.log("_contactListe :", _contactListe)
+            // console.log("Tous les users en BDD:", _contactListe)
             function checkUserActif(User){
                 return User.email !== activeUser
             }
@@ -24,7 +24,7 @@ exports.contactslistData = async (req, res)=> {
             }
 
             const utilisateur =_contactListe.filter( checkUserActif )
-            // console.log('useractif filtré :', utilisateur)
+            // console.log('liste en BDD moins le user actif :', utilisateur)
             for(contact of utilisateur) {
                 let _User = {name: contact.name, prenom: contact.prenom, photoProfile: contact.photoProfile,invited: contact.invited, email: contact.email}
                 listeUserActifFiltré.push(_User)
@@ -36,7 +36,7 @@ exports.contactslistData = async (req, res)=> {
             // console.log("active account :", activeAccount)
 
             const listeAmisAFiltrer = activeAccount[0].amis;
-            // console.log("liste amis a enlever :", listeAmisAFiltrer)
+            console.log("liste amis a enlever :", listeAmisAFiltrer)
 
 
 
@@ -51,13 +51,17 @@ exports.contactslistData = async (req, res)=> {
                     // console.log('contactListe en remplissage :', contactListe)
                 } 
             }
+            console.log('contactListe en remplie sans le userActif :', contactListe)
+
 
            for(ami of listeAmisAFiltrer){
-            // console.log('ami ??? :', ami)
-                    contactListe.filter(function(el) { if (el.email === ami) {contactListe.splice(el, 1)}} )
-                    // console.log("contactListe filtrage §§§§§§§§", contactListe)
+            console.log('ami ??? :', ami)
+                   contactListe = contactListe.filter(element => element.email !== ami)
+                    console.log("contactListe filtrage §§§§§§§§", contactListe)
             }
             // console.log('contactliste sans userActif ni ami ?????? :', contactListe)
+        
+
 
             res.json(contactListe)
 
