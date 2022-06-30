@@ -10,6 +10,7 @@ const wallpostHandler = require('./wallpostHandler');
 
 router.post("/register", userHandler.registerNewUser);
 router.post("/login", userHandler.loginUser);
+router.post("/updatephoto",  userHandler.updatePhoto)
 router.post("/deletefriend",auth, contactHandler.deleteFriend);
 router.post("/contactslist",auth, contactHandler.contactslistData );
 router.post("/invitecontact",auth, contactHandler.invitationContact );

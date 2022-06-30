@@ -26,6 +26,10 @@ export class UserService {
     return this.http.get(`${environment.baseURL}user/user`)
   }
 
+  updateUserPhoto(donnees: any) {
+    return this.http.post(`${environment.baseURL}user/updatephoto`, donnees).subscribe()
+  }
+
 
   constructor(private http: HttpClient) { }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user/user.service';
 import { map,tap,  Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  photoUrl!: string
+  http: any;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -33,6 +37,16 @@ _PhotoProfile$!: Observable<any>;
     this._Email$ = this.getEmail();
     // this._PhotoProfile$ = this.getPhoto();
 
+  }
+
+  onSubmitPhoto(): void {
+    console.log(this.photoUrl)
+    const donnees= {
+      photoUrl: this.photoUrl,
+      user: localStorage['user'] 
+    }
+    this.userService.updateUserPhoto(donnees)
+    
   }
 
 

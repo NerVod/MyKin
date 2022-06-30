@@ -94,6 +94,50 @@ exports.dataProtegee = async (req, res) => {
   })
 }
 
+
+exports.updatePhoto = async(req, res) => {
+  console.log(req.body)
+  const user = req.body.user;
+  const photo = req.body.photoUrl
+  console.log('user ?:', user)
+  console.log('photo string ?:', photo)
+
+  try {
+    const activeUser = await User.findOne(
+      {email: user}, (err, userFound) => {
+        if(!err) {
+          console.log('userFound',userFound)
+
+          User.updateOne(
+            {email: user}, 
+            {
+              photoProfile: photo
+            }, function (err, docs) {
+              if(err) {
+                console.log('erreur if updatephoto', err)
+              } else {
+                console.log("Photo de profil mise à jour", docs)
+              }
+            }
+          )
+        } else {
+          console.log('erreur else findOne de updatephoto')
+
+        }
+      }
+    )
+
+  } catch {
+    console.log("erreur maj photo")
+  }
+}
+
+
+
+
+
+
+
 exports.photoprofile = async (req, res)=> {
   console.log('req userhandlerbackend',req.params.id)
   let email= req.params.id
