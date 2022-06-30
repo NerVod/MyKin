@@ -1,0 +1,108 @@
+.ftco-section {
+    justify-content: center;
+    padding: 3em 0;
+
+  }
+
+  .img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  
+  .wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
+  
+  .img{
+    width: 50%; 
+  }
+
+  .heading-section{
+    margin-bottom: 5px;
+  }
+
+  .container {
+    background-color: var(--backgroundCard);
+    border-radius: 15px;
+    padding: 3em;
+    box-shadow: 4px 4px 20px var(--cardShadow) ; 
+  }
+
+  .centerCard {
+    margin-top: -15px;
+  }
+
+  .postItem {
+    margin-top: 15px;
+    padding: 5px 25px;
+  }
+
+  .form-label {
+    font-size: 1.2em;
+  }
+
+  .action-button {
+    margin-left: 25px;
+    margin-bottom: 15px;
+  }
+
+
+  //preview
+
+  .titlePreview{
+    margin: 15px 30px;
+    text-align: center;
+  }
+
+  .wall-post-card {
+    background-color: var(--backgroundCard);
+    box-shadow: 4px 4px 20px var(--cardShadow);
+    border-radius: 10px;
+    img {
+        width: 100%;
+    }
+    margin: 20px auto;
+    margin-bottom: 3em;
+    padding: 16px 30px;
+    width: 55%;
+}
+
+h2 {
+    margin-bottom: 0;
+    margin-left: 26px;
+}
+
+.liked {
+    background-color: rgba(234, 252, 253, 05);
+    color: rgb(12, 69, 69);
+    button {
+        background-color:lightsteelblue;
+        box-shadow: 4px 4px 20px var(--likedCardshadow);
+        color:rgb(20, 54, 109);
+        &:active {
+            box-shadow: 0 0 5px var(--likedCardshadow);
+        }
+    }
+}
+// preview
+
+  @media (max-width: 991.98px) {
+      .img, .login-wrap {
+        width: 100%; } }
+
+ 
+  
+  @media (max-width: 767.98px) {
+    .wrap .img {
+      height: 250px; } }
+
+
+
+
+    
+  

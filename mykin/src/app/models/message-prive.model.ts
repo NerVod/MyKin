@@ -1,6 +1,9 @@
 export class MessagePrive {
-    user!: string;
-    createdDate!: Date;
+    author?: string;
+    createdAt?: Date;
     title!: string;
     message!: string;
+    nameUser?: string;
+    prenomUser?: String;
+    ami?: string
 }

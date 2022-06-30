@@ -7,6 +7,9 @@ import { AuthGuard } from './guard/auth.guard';
 import { ContactComponent } from './contact/contact.component';
 import { WallPostNewComponent } from './wall-post-new/wall-post-new.component';
 import { WallPostFriendComponent } from './wall-post-friend/wall-post-friend.component';
+import { MessagePriveComponent } from './message-prive/message-prive.component';
+import { MessagePriveListComponent } from './message-prive-list/message-prive-list.component';
+import { MessagePriveNewComponent } from './message-prive-new/message-prive-new.component';
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo: "login"},
@@ -15,7 +18,9 @@ const routes: Routes = [
   {path: "login", component: LogInComponent},
   {path: "contact", component: ContactComponent},
   {path: "createpost", component: WallPostNewComponent},
-  {path: "wallpostfriend/:param", component: WallPostFriendComponent}
+  {path: "wallpostfriend/:param", component: WallPostFriendComponent},
+  {path: "message", component: MessagePriveListComponent},
+  {path: "createmessage", component: MessagePriveNewComponent},
 
   
 ];

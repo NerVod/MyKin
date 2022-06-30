@@ -1,0 +1,51 @@
+<section class="ftco-section">
+    
+    <div class="container">
+    
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Nouveau Message pour {{friendPrenom}} {{friendName}}</h2>
+            </div>
+        </div>
+    
+        <div class="row justify-content-center ">
+            <div class="col-md-12 col-lg-10 centerCard">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url(../../assets/images/amis.jpg);">
+                    </div>
+
+                    <form [formGroup]="messagePriveForm" (ngSubmit)="onSubmitForm" class="row g-3">
+
+                        <div class="col-md-12 postItem" >
+                            <label for="title" class="form-label">Titre</label>
+                            <input type="text" id="title" formControlName="title" class="form-control">
+                        </div>
+                        <div class="col-md-12 postItem">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea type="text" id="Message" formControlName="message" class="form-control" rows ="4"></textarea>
+                        </div>
+                        <div class="action-button">
+                            <button class="btn btn-primary px-5" type="submit" (click)="onSubmitForm()"  [disabled]="messagePriveForm.invalid">Enregistrer</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="titlePreview" *ngIf="messagePrivePreview$| async">
+        <h2>Preview de mon message</h2>
+    </div>
+    <div class="wall-post-card" *ngIf="messagePrivePreview$ | async as MessagePrive">
+        <p>Publié {{ MessagePrive.createdAt | date:'le d MMMM YYYY à HH:mm' }}</p>
+        <h2>{{ MessagePrive.title| titlecase}}</h2>
+
+        <p>{{MessagePrive.message }}</p>
+
+    </div>
+
+
+</section>

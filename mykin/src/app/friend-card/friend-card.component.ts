@@ -43,6 +43,10 @@ export class FriendCardComponent implements OnInit {
 
   onSendMessage(): void {
     console.log(`Envoyer un message`)
+    localStorage.setItem('ami', this.user);
+    localStorage.setItem('PrenomAmi', this.friendPrenom);
+    localStorage.setItem('NameAmi', this.friendNom);
+    this.router.navigateByUrl(`createmessage`)
   }
 
   deleteFriend():void {

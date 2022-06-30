@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessagePrive } from '../models/message-prive.model';
+import { MessagePriveService } from '../services/message-prives.service';
 
 @Component({
   selector: 'app-message-prive',
@@ -10,7 +11,9 @@ export class MessagePriveComponent implements OnInit {
 
   @Input() messagePrive!: MessagePrive
 
-  constructor() { }
+  destinataire!: string
+
+  constructor(private messagePriveService: MessagePriveService) { }
 
   ngOnInit(): void {
 

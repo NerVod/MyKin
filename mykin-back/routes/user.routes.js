@@ -4,6 +4,7 @@ const userHandler = require("./userHandler");
 const auth = require("../middleware/auth");
 const contactHandler= require("./contactHandler");
 const wallpostHandler = require('./wallpostHandler');
+const messageHandler = require('./messageHandler')
 
 
 
@@ -11,6 +12,8 @@ const wallpostHandler = require('./wallpostHandler');
 router.post("/register", userHandler.registerNewUser);
 router.post("/login", userHandler.loginUser);
 router.post("/updatephoto",  userHandler.updatePhoto)
+router.post("/hasphoto", userHandler.hasPhoto)
+router.post("/getPhoto", userHandler.getPhoto)
 router.post("/deletefriend",auth, contactHandler.deleteFriend);
 router.post("/contactslist",auth, contactHandler.contactslistData );
 router.post("/invitecontact",auth, contactHandler.invitationContact );
@@ -23,8 +26,9 @@ router.post("/getallfriends",auth, contactHandler.getAllFriends);
 router.post("/createpost",auth, wallpostHandler.createNewPost)
 router.post("/getuserwallpost", wallpostHandler.getUserWallposts)
 router.post("/haswallpost",  wallpostHandler.hasWallPost)
-router.post("/hasphoto", userHandler.hasPhoto)
-router.post("/getPhoto", userHandler.getPhoto)
+router.post("/createmessage",  messageHandler.createMessage)
+router.post("/getusermessages",  messageHandler.getUserMessages)
+router.post("/hasmessages",  messageHandler.hasMessage)
 
 
 router.get("/logged", auth, userHandler.dataProtegee);

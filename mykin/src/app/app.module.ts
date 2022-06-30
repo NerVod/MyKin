@@ -30,6 +30,7 @@ import { FriendCardComponent } from './friend-card/friend-card.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { WallPostNewComponent } from './wall-post-new/wall-post-new.component';
 import { WallPostFriendComponent } from './wall-post-friend/wall-post-friend.component';
+import { MessagePriveNewComponent } from './message-prive-new/message-prive-new.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { WallPostFriendComponent } from './wall-post-friend/wall-post-friend.com
     FriendListComponent,
     WallPostNewComponent,
     WallPostFriendComponent,
+    MessagePriveNewComponent,
   ],
   imports: [
     AppRoutingModule,

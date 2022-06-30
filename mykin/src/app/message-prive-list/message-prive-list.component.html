@@ -1,1 +1,6 @@
+
+<p> FROM SERVEUR</p>
+<app-message-prive *ngFor="let singleMessage of messagePrives$  | async" [messagePrive]="singleMessage"></app-message-prive>
+
+<p>FROM LOCAL</p>
 <app-message-prive *ngFor="let messagePriveElement of messagePrives" [messagePrive] ="messagePriveElement" ></app-message-prive>

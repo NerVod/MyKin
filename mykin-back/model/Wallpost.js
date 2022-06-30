@@ -5,12 +5,12 @@ const wallpostShema = new Schema(
     {
         title: {
           type: String,
-          unique: true,
+          unique: false,
           required: true,
         },
         description: {
           type: String,
-          unique: true,
+          unique: false,
           required: true,
         },
         createdDate: {
