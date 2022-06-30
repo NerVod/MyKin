@@ -156,7 +156,7 @@ exports.photoprofile = async (req, res)=> {
 exports.hasPhoto = async (req, res) => {
   const user = req.body.user;
   const photo = [];
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
     const photo = await User.findOne(
@@ -172,7 +172,7 @@ exports.hasPhoto = async (req, res) => {
         }
       })
   } catch {
-    console.log('catch hasphoto')
+    console.log('pas de photo')
   }
 
 }
@@ -180,7 +180,7 @@ exports.hasPhoto = async (req, res) => {
 exports.getPhoto = async (req, res) => {
   const user = req.body.user;
   const photo = [];
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
     const photo = await User.findOne(
