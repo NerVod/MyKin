@@ -29,6 +29,7 @@ import { InviteAttenteListeComponent } from './invite-attente-liste/invite-atten
 import { FriendCardComponent } from './friend-card/friend-card.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { WallPostNewComponent } from './wall-post-new/wall-post-new.component';
+import { WallPostFriendComponent } from './wall-post-friend/wall-post-friend.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { WallPostNewComponent } from './wall-post-new/wall-post-new.component';
     FriendCardComponent,
     FriendListComponent,
     WallPostNewComponent,
+    WallPostFriendComponent,
   ],
   imports: [
     AppRoutingModule,

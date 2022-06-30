@@ -18,17 +18,26 @@ export class FriendCardComponent implements OnInit {
   // invited!: any;
   photoProfile!: any;
   user!: string;
+  friendPrenom!: string;
+  friendNom!: string;
   survol!: boolean;
 
   constructor(private contactService: ContactService,private http: HttpClient,private router : Router, private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.user = this.contactList.email;
+    this.friendPrenom = this.contactList.prenom
+    this.friendNom = this.contactList.name
     this.contactService.getPhotoProfile(`${this.user}`);
   }
 
   onSeePosts(): void {
-    console.log(`voir le profile`)
+    console.log(`voir les posts `)
+    localStorage.setItem('ami', this.user);
+    localStorage.setItem('PrenomAmi', this.friendPrenom);
+    localStorage.setItem('NameAmi', this.friendNom);
+    
+    this.router.navigateByUrl(`/wallpostfriend/?prenom=${this.friendPrenom}&nom=${this.friendNom}`)
   }
 
 

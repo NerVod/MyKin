@@ -13,19 +13,13 @@ import { UserService } from '../services/user/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  // registerForm: FormGroup = this.formBuilder.group({
-  //   userName: ['', [Validators.required, Validators.minLength(3)]],
-  //   email: ['',[Validators.required, Validators.email]],
-  //   password:['',[ Validators.required, Validators.minLength(8)]],
-  //   password1:['',[ Validators.required, Validators.minLength(8)]]
-  // })
+
   registerForm: FormGroup;
 
   constructor( 
     public formBuilder: FormBuilder,
     private router : Router,
     private ngZone: NgZone,
-    // private crudService: CrudService,  
     private http :HttpClient,
     private User: UserService
     ) {

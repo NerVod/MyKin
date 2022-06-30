@@ -47,7 +47,6 @@ export class WallPostsService {
           }  
       ];
 
-    // wallPosts$!: Observable<WallPost[]>
       
       
       getAllWallPostsHard(): WallPost[]{
@@ -62,6 +61,11 @@ export class WallPostsService {
       hasWallPosts(user: any): any {
         const usercible = {user: user}
         return this.http.post(`${environment.baseURL}user/haswallpost`, usercible)
+      }
+
+      getFriendPost(): any{
+        const donnees = {user: localStorage['ami']}
+        return this.http.post(`${environment.baseURL}user/getuserwallpost`, donnees)
       }
       
       
@@ -95,6 +99,8 @@ export class WallPostsService {
         return this.http.post(`${environment.baseURL}user/createpost`, wallPost)
         // this.wallPosts.push(wallPost)
       }
+
+     
 
 
 

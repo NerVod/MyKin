@@ -1,0 +1,11 @@
+<div *ngIf="hasWallPosts$">
+    <h2 class="title">Les derniers posts de {{friendPrenom}} {{friendName}}:</h2>
+    <app-wall-post *ngFor="let wallPostElement of wallPosts$ | async"[wallPost] ="wallPostElement"></app-wall-post>
+</div>
+<div *ngIf="!hasWallPosts$">
+    <h2 class="title">Oh ! {{friendPrenom}} {{friendName}} n'a pas envore de Post..., Invitez-le à partager !</h2>
+</div>
+
+<!-- <p>wall from LOCAL</p>
+<app-wall-post *ngFor="let wallPostElement of wallPosts" [wallPost] ="wallPostElement"></app-wall-post> -->
+

@@ -18,7 +18,7 @@ export class WallPostListComponent implements OnInit {
   constructor(private wallPostService: WallPostsService) { }
 
   ngOnInit(): void {
-    this.wallPosts = this.wallPostService.getAllWallPostsHard();
+    // this.wallPosts = this.wallPostService.getAllWallPostsHard();
     this.wallPosts$ = this.wallPostService.getAllWallPosts();
     this.wallPostService.hasWallPosts(localStorage['user']).subscribe((data: Object) => this.hasWallPosts$=(Object.entries(data)[0][1]))   
 
