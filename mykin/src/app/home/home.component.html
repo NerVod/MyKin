@@ -41,9 +41,9 @@
                 <!-- <li> Modifier ma photo : <app-file-upload></app-file-upload></li> -->
                 <li>
                   <div class="photoLoader">
-                    <h2>Modifier ma photo</h2>
+                    <h3>Modifier ma photo</h3>
                     <form (ngSubmit)="onSubmitPhoto()">
-                      <label for="photoLoader">Insérez l'URL de votre Avatar </label>
+                      <label class="label" for="photoLoader">Insérez l'URL de votre Avatar </label>
                       <input type="text" id="photoLoader" [(ngModel)]="photoUrl" name="userPhoto">
                       <button type="submit">Charger la photo</button>
                     </form>

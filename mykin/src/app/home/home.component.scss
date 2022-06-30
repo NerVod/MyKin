@@ -17,3 +17,39 @@
 .basPage {
     height: 5em;
 }
+
+.label {
+    margin-right: 5px;
+}
+
+#photoLoader {
+    width: 300px;
+    margin-right: 10px;
+}
+
+@media (max-width: 499.33px) {
+    .photoProfile{
+        height: 120px;
+        width: 120px
+    }
+}
+@media (max-width: 460.33px) {
+    .photoProfile{
+        height: 100px;
+        width: 100px
+    }
+}
+@media (max-width: 420.33px) {
+    .photoProfile{
+        height: 80px;
+        width: 80px;
+        right: 10px
+    }
+}
+@media (max-width: 345.33px) {
+    .photoProfile{
+        // height: 80px;
+        // width: 80px;
+        right: 5px
+    }
+}
