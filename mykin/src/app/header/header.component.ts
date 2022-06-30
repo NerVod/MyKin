@@ -31,6 +31,8 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('Token');
     localStorage.removeItem('user');
     localStorage.removeItem('isLogged');
+    localStorage.removeItem('name');
+    localStorage.removeItem('prenom');
     // this.isLogged$ = this.userService.getUserData().pipe(
     //   map(value => value = Object.entries(value) !== undefined ? true : false),
     //   tap(Boolean => console.log('boolean déloggué ? :', Boolean))

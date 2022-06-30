@@ -36,6 +36,14 @@ const wallpostShema = new Schema(
           type: String,
           required: false
         },       
+        prenomUser: {
+          type: String,
+          required: false
+        },       
+        nameUser: {
+          type: String,
+          required: false
+        },       
     
       },
       { collection: "wallposts", timestamps: true }

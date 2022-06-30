@@ -40,6 +40,7 @@ _PhotoProfile$!: Observable<any>;
     this._Nom$ = this.userService.getUserData().pipe(
       tap(value => console.log('value getName',value)),
       map(value => value = Object.entries(value)),
+      tap(value =>localStorage.setItem('name', value[0][1]['name'] )),
       map(value => value = value[0][1]['name']),
       )
       return this._Nom$
@@ -48,6 +49,7 @@ _PhotoProfile$!: Observable<any>;
   getPrenom() {
     this._Prenom$ = this.userService.getUserData().pipe(
       map(value => value = Object.entries(value)),
+      tap(value =>localStorage.setItem('prenom', value[0][1]['prenom'] )),
       map(value => value = value[0][1]['prenom']),
       )
       return this._Prenom$

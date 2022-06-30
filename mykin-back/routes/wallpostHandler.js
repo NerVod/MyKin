@@ -11,7 +11,9 @@ exports.createNewPost = async (req, res) => {
             location: req.body.location,
             createdDate: req.body.createdDate,
             likes: req.body.likes,
-            author: req.body.author
+            author: req.body.author,
+            nameUser: req.body.nameUser,
+            prenomUser: req.body.prenomUser,
         });
 
         let createdPost = await post.save();
@@ -25,4 +27,29 @@ exports.createNewPost = async (req, res) => {
             error: err
         })
     }
+}
+
+
+exports.getUserWallposts = async (req, res) => {
+    const auteur = req.body.user
+    const userPosts = []
+    try {
+        console.log("req.body getuserwallpost :", auteur)
+        const posts = await Wallpost.find()
+        console.log('post :', posts)
+        for( let onePost of posts) {
+            if( onePost.author === auteur) {
+                userPosts.push(onePost)
+            }
+        }
+        const reversedUserPosts = userPosts.reverse();
+        res.json(reversedUserPosts)
+        
+
+    } catch {
+        console.log('pas de post')
+        res.json({msg: false})
+    }
+
+
 }

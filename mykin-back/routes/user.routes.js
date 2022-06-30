@@ -20,6 +20,7 @@ router.post("/accepterami", contactHandler.acceptationAmi,  contactHandler.accep
 router.post("/pendinginvit", contactHandler.hasPendingInvit);
 router.post("/getallfriends", contactHandler.getAllFriends);
 router.post("/createpost", wallpostHandler.createNewPost)
+router.post("/getuserwallpost", wallpostHandler.getUserWallposts)
 
 
 // router.get("/photoprofile/:id", userHandler.photoprofile )

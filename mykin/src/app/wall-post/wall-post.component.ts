@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { WallPost } from '../models/wall-post.model';
 import { WallPostsService } from '../services/wall-posts.service';
@@ -14,7 +15,7 @@ export class WallPostComponent implements OnInit {
   buttonText!: string;
   likeState!: number;
 
-  constructor(private wallPostService: WallPostsService) { }
+  constructor(private wallPostService: WallPostsService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.buttonText= 'I Like That';
@@ -22,15 +23,15 @@ export class WallPostComponent implements OnInit {
   }
 
   onLike(){
-    if( this.likeState === 1 ){
-    this.wallPostService.likeWallPostById(this.wallPost.id, 'like')
-          this.likeState = 2;
+    // if( this.likeState === 1 ){
+    // this.wallPostService.likeWallPostById(this.wallPost._id, 'like')
+    //       this.likeState = 2;
 
-    } else {
-          this.buttonText = "I Like That !";
-          this.likeState = 1;
-          this.wallPostService.likeWallPostById(this.wallPost.id, 'unlike')
-    };
+    // } else {
+    //       this.buttonText = "I Like That !";
+    //       this.likeState = 1;
+    //       this.wallPostService.likeWallPostById(this.wallPost._id, 'unlike')
+    // };
   }
 
 }

@@ -1,14 +1,14 @@
 <div class ="wall-post-card" [ngClass]="{liked: this.likeState === 2}"  >
     <h2>{{ wallPost.title| titlecase}}</h2>
     <!-- <a routerLink="/wallpost">Back</a> -->
-    <p>Publié {{ wallPost.createdDate | date:'le d MMMM YYYY à HH:mm' }}</p>
+    <p>Publié {{ wallPost.createdDate | date:'le d MMMM YYYY à HH:mm' }} par {{wallPost.prenomUser}} {{wallPost.nameUser}}</p>
     <img [src] = "wallPost.imageUrl" [alt]="wallPost.title">
     <p>{{wallPost.description }}</p>
     <p *ngIf="wallPost.location">Lieu : {{wallPost.location}}</p>
-    <p>
+    <!-- <p>
         <button (click)="onLike()">{{ buttonText}}</button>
         <span>🌶️ nombre de likes</span><span [ngStyle]="{color: 'rgb(0,150,' + wallPost.likes*300 + ')' }"> {{ wallPost.likes }}</span>
-    </p>
+    </p> -->
 
 </div>
 

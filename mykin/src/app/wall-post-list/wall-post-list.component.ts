@@ -13,11 +13,12 @@ export class WallPostListComponent implements OnInit {
   wallPosts! : WallPost[];
   wallPosts$! : Observable<WallPost[]>;
 
+
   constructor(private wallPostService: WallPostsService) { }
 
   ngOnInit(): void {
-    this.wallPosts = this.wallPostService.getAllWallPosts();
-// this.wallPosts$ = this.wallPostService.getAllWallPosts()
+    this.wallPosts = this.wallPostService.getAllWallPostsHard();
+    this.wallPosts$ = this.wallPostService.getAllWallPosts()
   }
 
 }

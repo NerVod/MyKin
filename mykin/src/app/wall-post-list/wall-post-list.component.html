@@ -1,1 +1,4 @@
-<app-wall-post *ngFor="let wallPostElement of wallPosts$ | async" [wallPost] ="wallPostElement"></app-wall-post>
+<h2 class="title">Mes derniers posts :</h2>
+<app-wall-post *ngFor="let wallPostElement of wallPosts$ | async"[wallPost] ="wallPostElement"></app-wall-post>
+<!-- <p>wall from LOCAL</p>
+<app-wall-post *ngFor="let wallPostElement of wallPosts" [wallPost] ="wallPostElement"></app-wall-post> -->

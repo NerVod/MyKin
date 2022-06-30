@@ -2,9 +2,14 @@ export class WallPost {
     title!: string;
     description!: string;
     createdDate!: Date;
-    likes!: number;
     imageUrl!: string;
     location?: string ;
     author?: string;
-    id!:number;
+    _id?:string;
+    likes?: number;
+    createdAt?:Date;
+    updatedAt?: Date;
+    nameUser?: string;
+    prenomUser?: String;
+    // id?:number;
 }
