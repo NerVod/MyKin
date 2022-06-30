@@ -27,7 +27,7 @@ export class FriendCardComponent implements OnInit {
     this.contactService.getPhotoProfile(`${this.user}`);
   }
 
-  onSeeProfile(): void {
+  onSeePosts(): void {
     console.log(`voir le profile`)
   }
 

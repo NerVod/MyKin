@@ -59,6 +59,10 @@ export class WallPostsService {
           return this.http.post(`${environment.baseURL}user/getuserwallpost`, donnees)
       }
 
+      hasWallPosts(user: any): any {
+        const usercible = {user: user}
+        return this.http.post(`${environment.baseURL}user/haswallpost`, usercible)
+      }
       
       
       // getWallPostById(WallPostId: number) : WallPost {

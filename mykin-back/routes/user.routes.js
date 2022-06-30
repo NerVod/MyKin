@@ -10,20 +10,20 @@ const wallpostHandler = require('./wallpostHandler');
 
 router.post("/register", userHandler.registerNewUser);
 router.post("/login", userHandler.loginUser);
-router.post("/deletefriend",contactHandler.deleteFriend);
-router.post("/contactslist", contactHandler.contactslistData );
-router.post("/invitecontact", contactHandler.invitationContact );
-router.post("/updatedemandeenvoyee", contactHandler.updatedemandeenvoyee);
-router.post("/isinvited", contactHandler.isinvited);
-router.post("/getinvitattente",  contactHandler.getInvitAttente);
-router.post("/accepterami", contactHandler.acceptationAmi,  contactHandler.accepterAmi);
-router.post("/pendinginvit", contactHandler.hasPendingInvit);
-router.post("/getallfriends", contactHandler.getAllFriends);
-router.post("/createpost", wallpostHandler.createNewPost)
-router.post("/getuserwallpost", wallpostHandler.getUserWallposts)
+router.post("/deletefriend",auth, contactHandler.deleteFriend);
+router.post("/contactslist",auth, contactHandler.contactslistData );
+router.post("/invitecontact",auth, contactHandler.invitationContact );
+router.post("/updatedemandeenvoyee",auth, contactHandler.updatedemandeenvoyee);
+router.post("/isinvited",auth, contactHandler.isinvited);
+router.post("/getinvitattente",auth,  contactHandler.getInvitAttente);
+router.post("/accepterami",auth, contactHandler.acceptationAmi,  contactHandler.accepterAmi);
+router.post("/pendinginvit",auth, contactHandler.hasPendingInvit);
+router.post("/getallfriends",auth, contactHandler.getAllFriends);
+router.post("/createpost",auth, wallpostHandler.createNewPost)
+router.post("/getuserwallpost",auth, wallpostHandler.getUserWallposts)
+router.post("/haswallpost",  wallpostHandler.hasWallPost)
 
 
-// router.get("/photoprofile/:id", userHandler.photoprofile )
 router.get("/logged", auth, userHandler.dataProtegee);
 router.get("/contact", auth, userHandler.dataProtegee);
 router.get("/user", auth, userHandler.userData);
