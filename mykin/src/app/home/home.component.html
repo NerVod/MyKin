@@ -5,11 +5,11 @@
       <div class="col-md-6 text-center mb-5">
         <h2 class="heading-section text-center">Bonjour {{ _Prenom$ | async}} !</h2>
         <div class="photoProfile">
-          <div class="containerPhoto" *ngIf="!_PhotoProfile$">
+          <div class="containerPhoto" *ngIf="!_hasPhoto$">
             <img class="photoProfile photo" src="../../assets/images/profil-vide.png" alt="logo profile vide"/>
           </div>
           <!-- placeholder pour si image de profile -->
-          <div class="containerPhoto" *ngIf="_PhotoProfile$">
+          <div class="containerPhoto" *ngIf="_hasPhoto$">
             <img class="photoProfile" [src]="_PhotoProfile$" alt=" photo profile"/>
           </div>            
         </div>

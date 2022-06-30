@@ -12,14 +12,15 @@ import { NgForm } from '@angular/forms';
 export class HomeComponent implements OnInit {
 
   photoUrl!: string
-  http: any;
+
 
   constructor(private userService: UserService, private router: Router) { }
 
 _Nom$!:Observable<any>;
 _Prenom$!:Observable<any>;
 _Email$!: Observable<any>;
-_PhotoProfile$!: Observable<any>;
+_PhotoProfile$!: any;
+_hasPhoto$!:any
 
 
   getProtectedData() {
@@ -35,7 +36,8 @@ _PhotoProfile$!: Observable<any>;
     this._Nom$= this.getName();
     this._Prenom$= this.getPrenom();
     this._Email$ = this.getEmail();
-    // this._PhotoProfile$ = this.getPhoto();
+    this.getPhoto();
+    this.userService.hasPhoto().subscribe(data => this._hasPhoto$=(Object.entries(data)[0][1]))
 
   }
 
@@ -78,12 +80,7 @@ _PhotoProfile$!: Observable<any>;
   }
 
   getPhoto() {
-    this._PhotoProfile$  = this.userService.getUserPhoto().pipe(
-      tap(value => console.log('value getName',value)),
-      map(value => value = Object.entries(value)),
-      map(value => value = value[0][1]['photoProfile']),
-      )
-      return this._PhotoProfile$ 
+  this.userService.getUserPhoto().subscribe(data => this._PhotoProfile$=(Object.entries(data)[0][1]))
   }
 
   onAddNewPost(): void {

@@ -23,11 +23,17 @@ export class UserService {
     return this.http.get(`${environment.baseURL}user/user`)
   }
   getUserPhoto() {
-    return this.http.get(`${environment.baseURL}user/user`)
+    const donnees = {user: localStorage['user']}
+    return this.http.post(`${environment.baseURL}user/getPhoto`, donnees)
   }
 
   updateUserPhoto(donnees: any) {
     return this.http.post(`${environment.baseURL}user/updatephoto`, donnees).subscribe()
+  }
+
+  hasPhoto() {
+    const donnees = {user: localStorage['user']}
+    return this.http.post(`${environment.baseURL}user/hasphoto`, donnees)
   }
 
 

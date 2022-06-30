@@ -152,3 +152,56 @@ exports.photoprofile = async (req, res)=> {
     msg : `route photoprofile ${email}`
   })
 }
+
+exports.hasPhoto = async (req, res) => {
+  const user = req.body.user;
+  const photo = [];
+  console.log(req.body);
+
+  try {
+    const photo = await User.findOne(
+      {email: user}, (err, userFound) => {
+        if(!err) {
+          const photoProfile = userFound.photoProfile
+          console.log('userFound :', photoProfile)
+          if(photoProfile !== null | undefined){
+            res.json({photo: true})
+          } else {
+            res.json({photo: false})
+          }
+        }
+      })
+  } catch {
+    console.log('catch hasphoto')
+  }
+
+}
+
+exports.getPhoto = async (req, res) => {
+  const user = req.body.user;
+  const photo = [];
+  console.log(req.body);
+
+  try {
+    const photo = await User.findOne(
+      {email: user}, (err, userFound) => {
+        if(!err) {
+          const photoProfile = userFound.photoProfile
+          console.log('userFound :', photoProfile)
+          if(photoProfile !== null | undefined){
+            res.json({photo: photoProfile})
+          } else {
+            res.json({photo: false})
+          }
+        }
+      })
+  } catch {
+    console.log('catch getPhoto')
+  }
+
+
+
+
+
+
+}

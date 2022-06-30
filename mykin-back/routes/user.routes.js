@@ -23,6 +23,8 @@ router.post("/getallfriends",auth, contactHandler.getAllFriends);
 router.post("/createpost",auth, wallpostHandler.createNewPost)
 router.post("/getuserwallpost", wallpostHandler.getUserWallposts)
 router.post("/haswallpost",  wallpostHandler.hasWallPost)
+router.post("/hasphoto", userHandler.hasPhoto)
+router.post("/getPhoto", userHandler.getPhoto)
 
 
 router.get("/logged", auth, userHandler.dataProtegee);
