@@ -96,17 +96,17 @@ exports.dataProtegee = async (req, res) => {
 
 
 exports.updatePhoto = async(req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   const user = req.body.user;
   const photo = req.body.photoUrl
-  console.log('user ?:', user)
-  console.log('photo string ?:', photo)
+  // console.log('user ?:', user)
+  // console.log('photo string ?:', photo)
 
   try {
     const activeUser = await User.findOne(
       {email: user}, (err, userFound) => {
         if(!err) {
-          console.log('userFound',userFound)
+          // console.log('userFound',userFound)
 
           User.updateOne(
             {email: user}, 
@@ -138,20 +138,20 @@ exports.updatePhoto = async(req, res) => {
 
 
 
-exports.photoprofile = async (req, res)=> {
-  console.log('req userhandlerbackend',req.params.id)
-  let email= req.params.id
+// exports.photoprofile = async (req, res)=> {
+//   console.log('req userhandlerbackend',req.params.id)
+//   let email= req.params.id
 
-/////////////////////////////////////////////////////
-  // faire recherche de la photo dans mongo ici
-/////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////
+//   // faire recherche de la photo dans mongo ici
+// /////////////////////////////////////////////////////
 
 
 
-  res.json({
-    msg : `route photoprofile ${email}`
-  })
-}
+//   res.json({
+//     msg : `route photoprofile ${email}`
+//   })
+// }
 
 exports.hasPhoto = async (req, res) => {
   const user = req.body.user;
@@ -163,7 +163,7 @@ exports.hasPhoto = async (req, res) => {
       {email: user}, (err, userFound) => {
         if(!err) {
           const photoProfile = userFound.photoProfile
-          console.log('userFound :', photoProfile)
+          // console.log('userFound :', photoProfile)
           if(photoProfile !== null | undefined){
             res.json({photo: true})
           } else {
@@ -187,7 +187,7 @@ exports.getPhoto = async (req, res) => {
       {email: user}, (err, userFound) => {
         if(!err) {
           const photoProfile = userFound.photoProfile
-          console.log('userFound :', photoProfile)
+          // console.log('userFound :', photoProfile)
           if(photoProfile !== null | undefined){
             res.json({photo: photoProfile})
           } else {
@@ -196,7 +196,7 @@ exports.getPhoto = async (req, res) => {
         }
       })
   } catch {
-    console.log('catch getPhoto')
+    console.log('no Photo')
   }
 
 
