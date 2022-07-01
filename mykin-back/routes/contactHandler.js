@@ -37,6 +37,9 @@ exports.contactslistData = async (req, res)=> {
 
             const listeAmisAFiltrer = activeAccount[0].amis;
             // console.log("liste amis a enlever :", listeAmisAFiltrer)
+            
+            const listeEnAttenteAFiltrer = activeAccount[0].invitEnAttente
+            // console.log("liste amis a enlever :", listeEnAttenteAFiltrer)
 
 
 
@@ -60,6 +63,10 @@ exports.contactslistData = async (req, res)=> {
                     // console.log("contactListe filtrage §§§§§§§§", contactListe)
             }
             // console.log('contactliste sans userActif ni ami ?????? :', contactListe)
+
+            for(ami of listeEnAttenteAFiltrer){
+                contactListe = contactListe.filter(element => element.email !== ami)
+            }
         
 
 

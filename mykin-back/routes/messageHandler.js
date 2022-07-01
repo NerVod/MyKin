@@ -90,10 +90,10 @@ exports.deleteMessage = async (req, res) => {
         MessagePrive.findOne(
             {_id: messageToDelete}, (err, message) => {
                 if(!err){
-                    console.log('message à supprimer',message)
+                    // console.log('message à supprimer',message)
                     MessagePrive.deleteOne({_id: messageToDelete}, function(err, message) {
                         if(err) throw err
-                        console.log("message supprimé");
+                        // console.log("message supprimé");
                         res.json({msg: 'message deleted'})
                     })
                 } else {

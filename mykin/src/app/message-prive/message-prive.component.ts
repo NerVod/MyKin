@@ -27,7 +27,6 @@ export class MessagePriveComponent implements OnInit {
   deleteMessage() {
     console.log("supression du message")
     if(confirm(`Voulez-vous vraiment supprimer le message de ${this.messagePrive.prenomUser} ${this.messagePrive.nameUser} ?`)) {
-      console.log(`supression du message de ${this.messagePrive.prenomUser} ${this.messagePrive.nameUser}  `)
       this.messagePriveService.deleteMessage(this.messagePrive._id).subscribe()
       this.router.navigateByUrl('/contact')
     }

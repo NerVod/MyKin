@@ -53,7 +53,8 @@ export class FriendCardComponent implements OnInit {
     if(confirm(`Voulez-vous vraiment supprimer ${this.contactList.prenom} ${this.contactList.name} de votre liste d'amis ?` )) {
       if(confirm(`Cette opération est irréversible, vous devrez de nouveau faire une demande d'ami à ${this.contactList.prenom} ${this.contactList.name}, voulez-vous confirmer ce choix ?`)){
         console.log(` friendCard component TS supression du copain ${this.contactList.prenom} ${this.contactList.name}`);
-        this.contactService.deleteFriend(this.contactList.email)
+        this.contactService.deleteFriend(this.contactList.email);
+        this.router.navigateByUrl(`/home`)
 
       }
     }

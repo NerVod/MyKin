@@ -65,7 +65,6 @@ addMessage(formValue: { title: string, message: string}): any {
 }
 
 deleteMessage(idMessage: string | undefined) {
-console.log(idMessage)
 const donnees = {MessageId : idMessage }
 return this.http.post(`${environment.baseURL}user/deletemessage`, donnees)
 
