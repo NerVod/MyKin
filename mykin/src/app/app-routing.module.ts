@@ -20,6 +20,7 @@ const routes: Routes = [
   {path: "createpost", component: WallPostNewComponent},
   {path: "wallpostfriend/:param", component: WallPostFriendComponent},
   {path: "message", component: MessagePriveListComponent},
+  {path: "message/:param", component: MessagePriveListComponent},
   {path: "createmessage", component: MessagePriveNewComponent},
 
   

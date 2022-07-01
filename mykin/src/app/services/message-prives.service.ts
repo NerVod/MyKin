@@ -60,8 +60,14 @@ addMessage(formValue: { title: string, message: string}): any {
     prenomUser: `${localStorage['prenom']}`,
     ami: `${localStorage['ami']}`
   };
-  console.log('champs du MessagePrive', MessagePrive);
+  // console.log('champs du MessagePrive', MessagePrive);
   return this.http.post(`${environment.baseURL}user/createmessage`, MessagePrive)
+}
+
+deleteMessage(idMessage: string | undefined) {
+console.log(idMessage)
+const donnees = {MessageId : idMessage }
+return this.http.post(`${environment.baseURL}user/deletemessage`, donnees)
 
 
 }

@@ -29,6 +29,7 @@ router.post("/haswallpost",  wallpostHandler.hasWallPost)
 router.post("/createmessage",  messageHandler.createMessage)
 router.post("/getusermessages",  messageHandler.getUserMessages)
 router.post("/hasmessages",  messageHandler.hasMessage)
+router.post("/deletemessage",  messageHandler.deleteMessage)
 
 
 router.get("/logged", auth, userHandler.dataProtegee);

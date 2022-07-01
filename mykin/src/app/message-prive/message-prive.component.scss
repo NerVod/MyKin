@@ -39,6 +39,21 @@ h2 {
     font-weight: 600;
 }
 
+.entete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteIcone {
+    height: 35px
+}
+
+.survol {
+    cursor:pointer;
+    border: 1px solid red;
+    border-radius: 5px 5px;
+}
+
 @media (max-width: 599.33px) {
     h2 {
         font-size: 1em;

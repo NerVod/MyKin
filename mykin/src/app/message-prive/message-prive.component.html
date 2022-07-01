@@ -1,5 +1,11 @@
 <div class="message-prive-card">
-    <p class="infoMessage">Envoyé par : <span class="sender">{{ messagePrive.prenomUser }} {{ messagePrive.nameUser }}</span> {{messagePrive.createdAt | date: 'le d MMMM YYYY à HH:mm'}}</p>
+    
+    <div class="entete">
+        <p class="infoMessage">Envoyé par : <span class="sender">{{ messagePrive.prenomUser }} {{ messagePrive.nameUser }}</span> {{messagePrive.createdAt | date: 'le d MMMM YYYY à HH:mm'}}</p>
+        
+        <img (mouseover)="this.survol=true" (mouseout)="this.survol=false" [ngClass]="{survol: survol}" (click)="deleteMessage()" class="deleteIcone" src="../../assets/logo/delete-icon.png">
+    </div>
+
     <div class="messageArea">
         <div class="bodyTitre">
             <h2 >{{ messagePrive.title }}</h2>

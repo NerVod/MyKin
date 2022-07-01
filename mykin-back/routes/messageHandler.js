@@ -34,13 +34,13 @@ exports.getUserMessages = async ( req, res ) => {
     const userMessages = []
 
     try{
-        console.log("req body getusermessages :", destinataireCible)
+        // console.log("req body getusermessages :", destinataireCible)
         const allMessages = await MessagePrive.find();
         // console.log("all messages :", allMessages);
         
         for(let oneMessage of allMessages) {
-            console.log("destinataireCible :", destinataireCible);
-            console.log("all messages :", oneMessage);
+            // console.log("destinataireCible :", destinataireCible);
+            // console.log("all messages :", oneMessage);
             if(oneMessage.destinataire === destinataireCible){
                 userMessages.push(oneMessage)
             }
@@ -80,5 +80,29 @@ exports.hasMessage = async (req, res) => {
     }catch {
         console.log("pas de message")
         res.json({msg: false})
+    }
+}
+
+exports.deleteMessage = async (req, res) => {
+    // console.log('req.body.messageId :', req.body.MessageId)
+    const messageToDelete = req.body.MessageId
+    try {
+        MessagePrive.findOne(
+            {_id: messageToDelete}, (err, message) => {
+                if(!err){
+                    console.log('message à supprimer',message)
+                    MessagePrive.deleteOne({_id: messageToDelete}, function(err, message) {
+                        if(err) throw err
+                        console.log("message supprimé");
+                        res.json({msg: 'message deleted'})
+                    })
+                } else {
+                    console.log('pas de message à supprimer !')
+                }
+            }
+        )
+
+    } catch {
+        console.log('catch delete message')
     }
 }

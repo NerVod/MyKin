@@ -5,5 +5,6 @@ export class MessagePrive {
     message!: string;
     nameUser?: string;
     prenomUser?: String;
-    ami?: string
+    ami?: string;
+    _id?: string
 }
