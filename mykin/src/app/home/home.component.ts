@@ -20,8 +20,9 @@ _Nom$!:Observable<any>;
 _Prenom$!:Observable<any>;
 _Email$!: Observable<any>;
 _PhotoProfile$!: any;
-_hasPhoto$!:any
+_hasPhoto$!:any;
 
+survol!: boolean;
 
   getProtectedData() {
     this.userService.getProtectedData().subscribe((data: any) => console.log('user data :',data))
@@ -48,6 +49,7 @@ _hasPhoto$!:any
       user: localStorage['user'] 
     }
     this.userService.updateUserPhoto(donnees)
+
     
   }
 
@@ -83,8 +85,27 @@ _hasPhoto$!:any
   this.userService.getUserPhoto().subscribe(data => this._PhotoProfile$=(Object.entries(data)[0][1]))
   }
 
-  onAddNewPost(): void {
-    this.router.navigateByUrl('/createpost')
+  deleteAccount() {
+    console.log('delete account')
+    if(confirm(`ATTENTION, vous êtes sur le point de supprimer votre compte de manière permanente !!!`)) {
+      if(confirm(`Cette opération est irréversible, vous devrez de nouveau créer un compte et contacter des amis !`)) {
+        this.userService.deleteAccount(localStorage['user']).subscribe();
+        this.logout();
+      }
+    }
+
+  }
+
+  logout() {
+    localStorage.removeItem('Token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLogged');
+    localStorage.removeItem('name');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('PrenomAmi');
+    localStorage.removeItem('NameAmi');
+
+    this.router.navigateByUrl('/login')
   }
  
 

@@ -9,6 +9,8 @@ import { User } from 'src/app/services/user/User';
 })
 export class UserService {
 
+  constructor(private http: HttpClient) { }
+
   createNewUser(donnees: User) {
     return this.http.post(`${environment.baseURL}user/register`, donnees)
   }
@@ -36,6 +38,10 @@ export class UserService {
     return this.http.post(`${environment.baseURL}user/hasphoto`, donnees)
   }
 
+  deleteAccount(account: string) {
+    const donnees = {user: account};
+    return this.http.post(`${environment.baseURL}user/deleteaccount`, donnees)
+  }
 
-  constructor(private http: HttpClient) { }
+
 }

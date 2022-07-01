@@ -14,6 +14,7 @@ router.post("/login", userHandler.loginUser);
 router.post("/updatephoto",  userHandler.updatePhoto);
 router.post("/hasphoto", userHandler.hasPhoto);
 router.post("/getPhoto", userHandler.getPhoto);
+router.post("/deleteaccount", userHandler.deleteAccount);
 router.post("/deletefriend", contactHandler.deleteFriend);
 router.post("/contactslist", contactHandler.contactslistData );
 router.post("/invitecontact", contactHandler.invitationContact );

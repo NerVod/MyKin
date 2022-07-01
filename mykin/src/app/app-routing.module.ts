@@ -10,6 +10,7 @@ import { WallPostFriendComponent } from './wall-post-friend/wall-post-friend.com
 import { MessagePriveComponent } from './message-prive/message-prive.component';
 import { MessagePriveListComponent } from './message-prive-list/message-prive-list.component';
 import { MessagePriveNewComponent } from './message-prive-new/message-prive-new.component';
+import { PagePostComponent } from './page-post/page-post.component';
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo: "login"},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "message", canActivate: [ AuthGuard ], component: MessagePriveListComponent},
   {path: "message/:param", canActivate: [ AuthGuard ], component: MessagePriveListComponent},
   {path: "createmessage", canActivate: [ AuthGuard ], component: MessagePriveNewComponent},
+  {path: "posts", canActivate: [ AuthGuard ], component: PagePostComponent},
 
   
 ];

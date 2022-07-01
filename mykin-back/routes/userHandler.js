@@ -198,10 +198,75 @@ exports.getPhoto = async (req, res) => {
   } catch {
     console.log('no Photo')
   }
+}
+
+exports.deleteAccount = async (req, res) => {
+  const activeUser= req.body.user
+
+try {
+
+  const allAccounts = await User.find()
+
+  // console.log("allAccounts :", allAccounts)
+  // console.log("activeUser :", activeUser)
+
+  for( account of allAccounts) {
+    const updatedAccount = account.email
+    let invitAttente = account.invitEnAttente
+    // console.log('invitAttente avant delete', invitAttente)
+    let invitEnvoyees = account.invitEnvoyee
+    // console.log('invitEnvoyee avant delete', invitEnvoyee)
+    let amis = account.amis
+    // console.log('Amis avant delete', amis)
+    invitAttente = invitAttente.filter(element => element !== activeUser);
+    invitEnvoyees= invitEnvoyees.filter(element => element !== activeUser);
+    amis = amis.filter(element => element !== activeUser)
+    console.log(`${activeUser} deleted from ${updatedAccount} ${invitAttente}`, invitAttente )
+    console.log(`${activeUser} deleted from ${updatedAccount} ${invitEnvoyees}`, invitEnvoyees )
+    console.log(`${activeUser} deleted from ${updatedAccount} ${amis}`, amis )
+    User.updateOne(
+      {email: updatedAccount},
+      {invitEnAttente : invitAttente}, function (err, doc) {
+        if(err){
+          console.log('err if updateOne delete account maj autres users')
+        } else {
+          console.log("user mis à jour", doc)
+        }
+      }
+    )
+    User.updateOne(
+      {email: updatedAccount},
+      {invitEnvoyee : invitEnvoyees},
+       function (err, doc) {
+        if(err){
+          console.log('err if updateOne delete account maj autres users')
+        } else {
+          console.log("user mis à jour", doc)
+        }
+      }
+    )
+    User.updateOne(
+      {email: updatedAccount},
+      {amis: amis}, function (err, doc) {
+        if(err){
+          console.log('err if updateOne delete account maj autres users')
+        } else {
+          console.log("user mis à jour", doc)
+        }
+      }
+    )
+  }
+  User.deleteOne(
+    {email: activeUser}, function(err, obj) {
+      if (err) throw error;
+      console.log(`le compte du mail ${activeUser} a été supprimé`)
+    }
+  )
 
 
 
-
-
+} catch {
+  console.log("catch delete account ")
+}
 
 }
