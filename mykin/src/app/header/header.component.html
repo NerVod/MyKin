@@ -3,7 +3,7 @@
     <a class="navbar-brand" ><h1>MyKin</h1><h4>Social Family</h4></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
       aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span (click)="toggleMenu()" class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse navTop" id="navbarCollapse">
       <ul class="navbar-nav mr-auto"> 
@@ -18,8 +18,12 @@
         </li>  
       </ul>
       <div class="logdiv">
-        <button  class="logButton" type="submit" (click)="logout()" >Logout</button>
+        <!-- <button  class="logButton" type="submit" (click)="logout()" >Logout</button> -->
+        <img src="../../assets/logo/logout.png" alt="icone logout" (mouseover)="this.survol=true" (mouseout)="this.survol=false" [ngClass]="{survol: survol}" (click)="logout()">
       </div>
+    </div>
+    <div *ngIf="toggleNav" class="navmenu">
+      <app-nav-liste></app-nav-liste>
     </div>
   </nav>
   

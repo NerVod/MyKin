@@ -25,3 +25,21 @@
     border-color: rgba(92,155,167,1);
     margin-right: 18px;
 }
+
+.navmenu {
+
+    position: fixed;
+    right: 0;
+    transform: translateY(75%);
+    background: linear-gradient(180deg,rgba(92,155,167,1) 0%, rgba(31,189,214,1) 100% );
+    z-index: 10;
+
+}
+
+.logdiv {
+    margin-right: 20px;
+}
+
+.survol {
+    cursor: pointer
+}

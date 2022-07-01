@@ -10,15 +10,20 @@ import { UserService } from '../services/user/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public isLogged$!: Observable<boolean>;
+  // public isLogged$!: Observable<boolean>;
+  toggleNav!:boolean
+
 
   constructor(private userService: UserService, private router: Router) { }
+
+  survol!: boolean
 
   ngOnInit(): void {
     // this.isLogged$ = this.userService.getUserData().pipe(
     //   map(value => value = Object.entries(value) !== undefined ? true : false),
     //   tap(Boolean => console.log('boolean loggué ? :', Boolean))
     // )
+    this.toggleNav = false
 
   }
 
@@ -35,11 +40,16 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('prenom');
     localStorage.removeItem('PrenomAmi');
     localStorage.removeItem('NameAmi');
-    // this.isLogged$ = this.userService.getUserData().pipe(
-    //   map(value => value = Object.entries(value) !== undefined ? true : false),
-    //   tap(Boolean => console.log('boolean déloggué ? :', Boolean))
-    //   )
+
     this.router.navigateByUrl('/login')
+  }
+
+  toggleMenu() {
+    console.log('menu demandé')
+    this.toggleNav = !this.toggleNav
+    setTimeout(() => {
+      this.toggleNav= false
+    }, 5000);
   }
 
 }

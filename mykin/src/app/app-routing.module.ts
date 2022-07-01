@@ -16,12 +16,12 @@ const routes: Routes = [
   {path:"home", canActivate: [ AuthGuard ], component: HomeComponent },
   {path: "register", component: RegisterComponent},
   {path: "login", component: LogInComponent},
-  {path: "contact", component: ContactComponent},
-  {path: "createpost", component: WallPostNewComponent},
-  {path: "wallpostfriend/:param", component: WallPostFriendComponent},
-  {path: "message", component: MessagePriveListComponent},
-  {path: "message/:param", component: MessagePriveListComponent},
-  {path: "createmessage", component: MessagePriveNewComponent},
+  {path: "contact", canActivate: [ AuthGuard ], component: ContactComponent},
+  {path: "createpost", canActivate: [ AuthGuard ], component: WallPostNewComponent},
+  {path: "wallpostfriend/:param", canActivate: [ AuthGuard ], component: WallPostFriendComponent},
+  {path: "message", canActivate: [ AuthGuard ], component: MessagePriveListComponent},
+  {path: "message/:param", canActivate: [ AuthGuard ], component: MessagePriveListComponent},
+  {path: "createmessage", canActivate: [ AuthGuard ], component: MessagePriveNewComponent},
 
   
 ];

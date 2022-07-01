@@ -31,6 +31,7 @@ import { FriendListComponent } from './friend-list/friend-list.component';
 import { WallPostNewComponent } from './wall-post-new/wall-post-new.component';
 import { WallPostFriendComponent } from './wall-post-friend/wall-post-friend.component';
 import { MessagePriveNewComponent } from './message-prive-new/message-prive-new.component';
+import { NavListeComponent } from './nav-liste/nav-liste.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MessagePriveNewComponent } from './message-prive-new/message-prive-new.
     WallPostNewComponent,
     WallPostFriendComponent,
     MessagePriveNewComponent,
+    NavListeComponent,
   ],
   imports: [
     AppRoutingModule,

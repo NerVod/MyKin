@@ -1,0 +1,19 @@
+<div class="nav">
+    <ul class="navbar-nav mr-auto"> 
+        <li class="nav-item">
+          <a class="nav-link text-dark nav-item-top " routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark nav-item-top " routerLink="/contact">Contacts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark nav-item-top" routerLink="/message">Messages</a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link text-dark nav-item-top" ></a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link text-dark" (mouseover)="this.survol=true" (mouseout)="this.survol=false" [ngClass]="{survol: survol}" (click)="logout()">LogOut</a>
+        </li>   
+      </ul>
+</div>
