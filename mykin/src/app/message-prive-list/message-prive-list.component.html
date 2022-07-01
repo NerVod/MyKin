@@ -1,6 +1,14 @@
-
-<p> FROM SERVEUR</p>
-<app-message-prive *ngFor="let singleMessage of messagePrives$  | async" [messagePrive]="singleMessage"></app-message-prive>
-
-<p>FROM LOCAL</p>
-<app-message-prive *ngFor="let messagePriveElement of messagePrives" [messagePrive] ="messagePriveElement" ></app-message-prive>
+<div *ngIf="hasMessages$">
+    <div class="title">
+        <p> Mes messages</p>
+    </div>
+    <app-message-prive *ngFor="let singleMessage of messagePrives$  | async" [messagePrive]="singleMessage"></app-message-prive>
+</div>
+<div *ngIf="!hasMessages$">
+    <div class="title">
+        <h3>Vous n'avez pas de message dans votre espace</h3>
+    </div>
+</div>
+<div class="basPage"></div>
+<!-- <p>FROM LOCAL</p>
+<app-message-prive *ngFor="let messagePriveElement of messagePrives" [messagePrive] ="messagePriveElement" ></app-message-prive> -->

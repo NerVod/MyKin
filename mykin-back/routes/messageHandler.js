@@ -34,16 +34,18 @@ exports.getUserMessages = async ( req, res ) => {
     const userMessages = []
 
     try{
-        console.log("req body getusermessages :", destinataire)
+        console.log("req body getusermessages :", destinataireCible)
         const allMessages = await MessagePrive.find();
-        console.log("all messages :", allMessages);
-
+        // console.log("all messages :", allMessages);
+        
         for(let oneMessage of allMessages) {
+            console.log("destinataireCible :", destinataireCible);
+            console.log("all messages :", oneMessage);
             if(oneMessage.destinataire === destinataireCible){
                 userMessages.push(oneMessage)
             }
         }
-        console.log("Messages pour le destinataire", userMessages)
+        // console.log("Messages pour le destinataire", userMessages)
         const reversedUserMessages = userMessages.reverse();
         res.json(reversedUserMessages)
 
