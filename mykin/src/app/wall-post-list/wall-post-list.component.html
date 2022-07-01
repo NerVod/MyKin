@@ -3,7 +3,7 @@
     <app-wall-post *ngFor="let wallPostElement of wallPosts$ | async"[wallPost] ="wallPostElement"></app-wall-post>
 </div>
 <div *ngIf="!hasWallPosts$">
-    <h2 class="title">Vous n'avez pas envore de Post, commencez à partager !</h2>
+    <h2 class="title">Vous n'avez pas encore de Post, commencez à partager !</h2>
 </div>
 
 <!-- <p>wall from LOCAL</p>

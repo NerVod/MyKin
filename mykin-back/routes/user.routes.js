@@ -11,25 +11,26 @@ const messageHandler = require('./messageHandler')
 
 router.post("/register", userHandler.registerNewUser);
 router.post("/login", userHandler.loginUser);
-router.post("/updatephoto",  userHandler.updatePhoto)
-router.post("/hasphoto", userHandler.hasPhoto)
-router.post("/getPhoto", userHandler.getPhoto)
-router.post("/deletefriend",auth, contactHandler.deleteFriend);
-router.post("/contactslist",auth, contactHandler.contactslistData );
-router.post("/invitecontact",auth, contactHandler.invitationContact );
-router.post("/updatedemandeenvoyee",auth, contactHandler.updatedemandeenvoyee);
-router.post("/isinvited",auth, contactHandler.isinvited);
-router.post("/getinvitattente",auth,  contactHandler.getInvitAttente);
-router.post("/accepterami",auth, contactHandler.acceptationAmi,  contactHandler.accepterAmi);
-router.post("/pendinginvit",auth, contactHandler.hasPendingInvit);
-router.post("/getallfriends",auth, contactHandler.getAllFriends);
-router.post("/createpost",auth, wallpostHandler.createNewPost)
-router.post("/getuserwallpost", wallpostHandler.getUserWallposts)
-router.post("/haswallpost",  wallpostHandler.hasWallPost)
-router.post("/createmessage",  messageHandler.createMessage)
-router.post("/getusermessages",  messageHandler.getUserMessages)
-router.post("/hasmessages",  messageHandler.hasMessage)
-router.post("/deletemessage",  messageHandler.deleteMessage)
+router.post("/updatephoto",  userHandler.updatePhoto);
+router.post("/hasphoto", userHandler.hasPhoto);
+router.post("/getPhoto", userHandler.getPhoto);
+router.post("/deletefriend", contactHandler.deleteFriend);
+router.post("/contactslist", contactHandler.contactslistData );
+router.post("/invitecontact", contactHandler.invitationContact );
+router.post("/updatedemandeenvoyee", contactHandler.updatedemandeenvoyee);
+router.post("/isinvited",contactHandler.isinvited);
+router.post("/getinvitattente",  contactHandler.getInvitAttente);
+router.post("/accepterami", contactHandler.acceptationAmi,  contactHandler.accepterAmi);
+router.post("/pendinginvit", contactHandler.hasPendingInvit);
+router.post("/getallfriends", contactHandler.getAllFriends);
+router.post("/hasfriends",  contactHandler.hasFriends);
+router.post("/createpost", wallpostHandler.createNewPost);
+router.post("/getuserwallpost", wallpostHandler.getUserWallposts);
+router.post("/haswallpost",  wallpostHandler.hasWallPost);
+router.post("/createmessage",  messageHandler.createMessage);
+router.post("/getusermessages",  messageHandler.getUserMessages);
+router.post("/hasmessages",  messageHandler.hasMessage);
+router.post("/deletemessage",  messageHandler.deleteMessage);
 
 
 router.get("/logged", auth, userHandler.dataProtegee);

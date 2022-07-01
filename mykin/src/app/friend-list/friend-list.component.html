@@ -1,8 +1,13 @@
 <div class="title">
     <h2>Mes Amis</h2>
 </div>
-<div class="listeAmis">
-    <app-friend-card *ngFor="let ami of contactList$ | async"[contactList] = "ami"></app-friend-card>
+<div *ngIf="hasFriends$">
+    <div class="listeAmis">
+        <app-friend-card *ngFor="let ami of contactList$ | async"[contactList] = "ami"></app-friend-card>
+    </div>
+</div>
+<div *ngIf="!hasFriends$">
+    <h2 class="title">Vous n'avez pas encore d'ami, invitez-en de nouveaux !</h2>
 </div>
     
 <!-- <p>friend-list HARDCODED works!</p>

@@ -537,3 +537,29 @@ exports.deleteFriend = async (req, res) => {
     }
 
 } 
+
+
+exports.hasFriends = async (req, res) => {
+    const activeUser = req.body.user
+    // console.log('user pour hasfriends', activeUser)
+
+    try{
+        User.findOne(
+            { email : activeUser}, (err, user) => {
+                if(!err) {
+                    listeAmis = user.amis;
+                    if(listeAmis.length > 0) {
+                        res.json({hasfriend : true})
+                    } else { 
+                        res.json({hasfriend: false})
+                    }
+                } else {
+                    console.log('err pas de compte trouvé pour recherche hasfriends')
+                }
+            }
+        )
+
+    } catch {
+        console.log('no friends catch hasfriends')
+    }
+}

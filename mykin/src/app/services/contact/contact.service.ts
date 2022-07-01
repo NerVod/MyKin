@@ -121,6 +121,11 @@ export class ContactService {
     return this.http.post(`${environment.baseURL}user/deletefriend/`, donnees).subscribe()
   }
 
+  hasFriends(){
+    const donnees = {user : localStorage['user']};
+    return this.http.post(`${environment.baseURL}user/hasfriends/`, donnees)
+  }
+
 
 }
 
