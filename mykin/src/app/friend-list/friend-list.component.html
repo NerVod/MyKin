@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="hasFriends$">
     <div class="listeAmis">
-        <app-friend-card *ngFor="let ami of contactList$ | async"[contactList] = "ami"></app-friend-card>
+        <app-friend-card  *ngFor="let ami of contactList$ | async"[contactList] = "ami"></app-friend-card>
     </div>
 </div>
 <div *ngIf="!hasFriends$">
